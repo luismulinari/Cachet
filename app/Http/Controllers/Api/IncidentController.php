@@ -67,15 +67,15 @@ class IncidentController extends AbstractApiController
     public function store()
     {
         try {
-            $incident = dispatch(new CreateIncidentCommand(
+            $incident = execute(new CreateIncidentCommand(
                 Binput::get('name'),
                 Binput::get('status'),
                 Binput::get('message', null, false, false),
-                Binput::get('visible', true),
+                (bool) Binput::get('visible', true),
                 Binput::get('component_id'),
                 Binput::get('component_status'),
-                Binput::get('notify', true),
-                Binput::get('stickied', false),
+                (bool) Binput::get('notify', true),
+                (bool) Binput::get('stickied', false),
                 Binput::get('occurred_at'),
                 Binput::get('template'),
                 Binput::get('vars', []),
@@ -98,16 +98,16 @@ class IncidentController extends AbstractApiController
     public function update(Incident $incident)
     {
         try {
-            $incident = dispatch(new UpdateIncidentCommand(
+            $incident = execute(new UpdateIncidentCommand(
                 $incident,
                 Binput::get('name'),
                 Binput::get('status'),
                 Binput::get('message'),
-                Binput::get('visible', true),
+                (bool) Binput::get('visible', true),
                 Binput::get('component_id'),
                 Binput::get('component_status'),
-                Binput::get('notify', true),
-                Binput::get('stickied', false),
+                (bool) Binput::get('notify', true),
+                (bool) Binput::get('stickied', false),
                 Binput::get('occurred_at'),
                 Binput::get('template'),
                 Binput::get('vars', [])
@@ -128,7 +128,7 @@ class IncidentController extends AbstractApiController
      */
     public function destroy(Incident $incident)
     {
-        dispatch(new RemoveIncidentCommand($incident));
+        execute(new RemoveIncidentCommand($incident));
 
         return $this->noContent();
     }

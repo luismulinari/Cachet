@@ -53,6 +53,15 @@ class CreateComponentCommandHandler
     {
         $component = Component::create($this->filter($command));
 
+        // Sync the tags into the component.
+        if ($command->tags) {
+            collect(preg_split('/ ?, ?/', $command->tags))->filter()->map(function ($tag) {
+                return trim($tag);
+            })->pipe(function ($tags) use ($component) {
+                $component->attachTags($tags);
+            });
+        }
+
         event(new ComponentWasCreatedEvent($this->auth->user(), $component));
 
         return $component;
@@ -61,7 +70,7 @@ class CreateComponentCommandHandler
     /**
      * Filter the command data.
      *
-     * @param \CachetHQ\Cachet\Bus\Commands\Incident\CreateComponentCommand $command
+     * @param \CachetHQ\Cachet\Bus\Commands\Component\CreateComponentCommand $command
      *
      * @return array
      */

@@ -23,19 +23,22 @@ return [
         'group' => [
             'other' => 'Other Components',
         ],
+        'select_all'   => 'Select All',
+        'deselect_all' => 'Deselect All',
     ],
 
     // Incidents
     'incidents' => [
         'none'         => 'No incidents reported',
-        'past'         => 'Vorige Voorvalle',
+        'past'         => 'Past Incidents',
         'stickied'     => 'Stickied Incidents',
-        'scheduled'    => 'Geskeduleerde Instandhouding',
+        'scheduled'    => 'Maintenance',
         'scheduled_at' => ', scheduled :timestamp',
-        'posted'       => 'Posted :timestamp',
+        'posted'       => 'Posted :timestamp by :username',
+        'posted_at'    => 'Posted at :timestamp',
         'status'       => [
-            1 => 'Onder die Loep',
-            2 => 'Geïdentifiseerd',
+            1 => 'Investigating',
+            2 => 'Identified',
             3 => 'Hou Dop',
             4 => 'Opgelos',
         ],
@@ -52,9 +55,9 @@ return [
 
     // Service Status
     'service' => [
-        'good'  => '[0,1] System operational|[2,Inf] All systems are operational',
-        'bad'   => '[0,1] The system is experiencing issues|[2,Inf] Some systems are experiencing issues',
-        'major' => '[0,1] The system is experiencing major issues|[2,Inf] Some systems are experiencing major issues',
+        'good'  => '[0,1]System operational|[2,*]All systems are operational',
+        'bad'   => '[0,1]The system is experiencing issues|[2,*]Some systems are experiencing issues',
+        'major' => '[0,1]The system is experiencing major issues|[2,*]Some systems are experiencing major issues',
     ],
 
     'api' => [
@@ -74,22 +77,29 @@ return [
 
     // Subscriber
     'subscriber' => [
-        'subscribe'   => 'Subscribe to get the updates',
-        'unsubscribe' => 'Unsubscribe at :link',
-        'button'      => 'Teken aan',
-        'manage'      => [
-            'no_subscriptions' => 'You\'re currently subscribed to all updates.',
-            'my_subscriptions' => 'You\'re currently subscribed to the following updates.',
+        'subscribe'           => 'Subscribe to status changes and incident updates',
+        'unsubscribe'         => 'Unsubscribe',
+        'button'              => 'Teken aan',
+        'manage_subscription' => 'Manage subscription',
+        'manage'              => [
+            'notifications'       => 'Notifications',
+            'notifications_for'   => 'Manage notifications for',
+            'no_subscriptions'    => 'You\'re currently subscribed to all updates.',
+            'update_subscription' => 'Update Subscription',
+            'my_subscriptions'    => 'You\'re currently subscribed to the following updates.',
+            'manage_at_link'      => 'Manage your subscriptions at :link',
         ],
         'email' => [
-            'subscribe'          => 'Subscribe to email updates.',
-            'subscribed'         => 'You\'ve been subscribed to email notifications, please check your email to confirm your subscription.',
-            'verified'           => 'Your email subscription has been confirmed. Thank you!',
-            'manage'             => 'Bestuur Subskripsies',
-            'unsubscribe'        => 'Unsubscribe from email updates.',
-            'unsubscribed'       => 'Your email subscription has been cancelled.',
-            'failure'            => 'Something went wrong with the subscription.',
-            'already-subscribed' => 'Cannot subscribe :email because they\'re already subscribed.',
+            'manage_subscription' => 'We\'ve sent you an email, please click the link to manage your subscription',
+            'subscribe'           => 'Subscribe to email updates.',
+            'subscribed'          => 'You\'ve been subscribed to email notifications, please check your email to confirm your subscription.',
+            'updated-subscribe'   => 'You\'ve succesfully updated your subscriptions.',
+            'verified'            => 'Your email subscription has been confirmed. Thank you!',
+            'manage'              => 'Bestuur Subskripsies',
+            'unsubscribe'         => 'Unsubscribe from email updates.',
+            'unsubscribed'        => 'Your email subscription has been cancelled.',
+            'failure'             => 'Something went wrong with the subscription.',
+            'already-subscribed'  => 'Cannot subscribe :email because they\'re already subscribed.',
         ],
     ],
 
@@ -116,12 +126,21 @@ return [
         ],
     ],
 
+    // Meta descriptions
+    'meta' => [
+        'description' => [
+            'incident'  => 'Details and updates about the :name incident that occurred on :date',
+            'schedule'  => 'Details about the scheduled maintenance period :name starting :startDate',
+            'subscribe' => 'Subscribe to :app in order to receive updates of incidents and scheduled maintenance periods',
+            'overview'  => 'Stay up to date with the latest service updates from :app.',
+        ],
+    ],
+
     // Other
     'home'            => 'Tuiste',
-    'description'     => 'Stay up to date with the latest service updates from :app.',
     'powered_by'      => 'Powered by <a href="https://cachethq.io" class="links">Cachet</a>.',
     'timezone'        => 'Times are shown in :timezone.',
-    'about_this_site' => 'About This Site',
+    'about_this_site' => 'Aangaande Hierdie Webwerf',
     'rss-feed'        => 'RSS',
     'atom-feed'       => 'Atom',
     'feed'            => 'Status Feed',

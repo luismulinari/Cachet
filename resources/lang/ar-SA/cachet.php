@@ -12,94 +12,104 @@
 return [
     // Components
     'components' => [
-        'last_updated' => 'آخر تحديث :timestamp',
+        'last_updated' => 'Last updated :timestamp',
         'status'       => [
-            0 => 'مجهول',
-            1 => 'تشغيل',
-            2 => 'مشاكل أداء',
-            3 => 'انقطاع جزئي',
-            4 => 'انقطاع اساسي',
+            0 => 'Unknown',
+            1 => 'Operational',
+            2 => 'Performance Issues',
+            3 => 'Partial Outage',
+            4 => 'Major Outage',
         ],
         'group' => [
-            'other' => 'مكونات أخرى',
+            'other' => 'Other Components',
         ],
+        'select_all'   => 'Select All',
+        'deselect_all' => 'Deselect All',
     ],
 
     // Incidents
     'incidents' => [
-        'none'         => 'لا توجد حالات تم الإبلاغ عنها',
-        'past'         => 'حالات سابقة',
-        'stickied'     => 'حالات مثبتة',
-        'scheduled'    => 'صيانة مجدولة',
-        'scheduled_at' => ', مجدولة :timestamp',
-        'posted'       => 'تم الإرسال :timestamp',
+        'none'         => 'No incidents reported',
+        'past'         => 'Past Incidents',
+        'stickied'     => 'Stickied Incidents',
+        'scheduled'    => 'Maintenance',
+        'scheduled_at' => ', scheduled :timestamp',
+        'posted'       => 'Posted :timestamp by :username',
+        'posted_at'    => 'Posted at :timestamp',
         'status'       => [
-            1 => 'تحقيق',
-            2 => 'تم التعرف عليه',
-            3 => 'مراقبة',
-            4 => 'تمّ اصلاحها',
+            1 => 'Investigating',
+            2 => 'Identified',
+            3 => 'Watching',
+            4 => 'Fixed',
         ],
     ],
 
     // Schedule
     'schedules' => [
         'status' => [
-            0 => 'القادم',
-            1 => 'جار المعالجة',
-            2 => 'مكتملة',
+            0 => 'Upcoming',
+            1 => 'In Progress',
+            2 => 'Complete',
         ],
     ],
 
     // Service Status
     'service' => [
-        'good'  => '[0,1] النظام يعمل | [2,Inf] جميع الأنظمة تعمل',
-        'bad'   => '[0,1] النظام يواجه مشاكل | [2,Inf] بعض الأنظمة تواجه مشاكل',
-        'major' => '[0,1] النظام يواجه مشاكل أساسية | [2,Inf] بعض الأنظمة تواجه مشاكل أساسية',
+        'good'  => '[0,1]System operational|[2,*]All systems are operational',
+        'bad'   => '[0,1] النظام يواجه مشاكل|[2,Inf] بعض الأنظمة تواجه مشاكل',
+        'major' => '[0,1] النظام يواجه مشاكل أساسية|[2,Inf] بعض الأنظمة تواجه مشاكل أساسية',
     ],
 
     'api' => [
-        'regenerate' => 'إعادة إنشاء مفتاح الواجهة البرمجية',
-        'revoke'     => 'إزالة مفتاح الواجهة البرمجية',
+        'regenerate' => 'Regenerate API Key',
+        'revoke'     => 'Revoke API Key',
     ],
 
     // Metrics
     'metrics' => [
         'filter' => [
-            'last_hour' => 'الساعة الأخيرة',
-            'hourly'    => 'آخر 12 ساعة',
-            'weekly'    => 'أسبوع',
-            'monthly'   => 'شهر',
+            'last_hour' => 'Last Hour',
+            'hourly'    => 'Last 12 Hours',
+            'weekly'    => 'Week',
+            'monthly'   => 'Month',
         ],
     ],
 
     // Subscriber
     'subscriber' => [
-        'subscribe'   => 'إشترك للحصول على التحديثات',
-        'unsubscribe' => 'إلغاء الإشتراك في :link',
-        'button'      => 'اشتراك',
-        'manage'      => [
-            'no_subscriptions' => 'أنت الآن مشترك للحصول على جميع التحديثات.',
-            'my_subscriptions' => 'أنت كنت مشترك حاليا بالتحديثات التالية.',
+        'subscribe'           => 'Subscribe to status changes and incident updates',
+        'unsubscribe'         => 'Unsubscribe',
+        'button'              => 'Subscribe',
+        'manage_subscription' => 'Manage subscription',
+        'manage'              => [
+            'notifications'       => 'Notifications',
+            'notifications_for'   => 'Manage notifications for',
+            'no_subscriptions'    => 'You\'re currently subscribed to all updates.',
+            'update_subscription' => 'Update Subscription',
+            'my_subscriptions'    => 'You\'re currently subscribed to the following updates.',
+            'manage_at_link'      => 'Manage your subscriptions at :link',
         ],
         'email' => [
-            'subscribe'          => 'إشترك في تحديثات البريد الإلكتروني.',
-            'subscribed'         => 'تم تسجيلك في تنبيهات البريد الإلكتروني، الرجاء تفقد بريدك الإلكتروني لتأكيد الإشتراك.',
-            'verified'           => 'تم تأكيد بريدك الإلكتروني. شكراً لك!',
-            'manage'             => 'تحكم في الاشتراكات الخاص بك',
-            'unsubscribe'        => 'إلغاء الإشتراك من تحديثات البريد الإلكتروني.',
-            'unsubscribed'       => 'تم إلغاء إشتراك بريدك الإلكتروني.',
-            'failure'            => 'حدث خلل أثناء الإشتراك.',
-            'already-subscribed' => 'لا يمكن الاشتراك: البريد الإلكتروني نظراً لأنها كنت الاشتراك مسبقاً.',
+            'manage_subscription' => 'We\'ve sent you an email, please click the link to manage your subscription',
+            'subscribe'           => 'Subscribe to email updates.',
+            'subscribed'          => 'You\'ve been subscribed to email notifications, please check your email to confirm your subscription.',
+            'updated-subscribe'   => 'You\'ve succesfully updated your subscriptions.',
+            'verified'            => 'Your email subscription has been confirmed. Thank you!',
+            'manage'              => 'Manage your subscription',
+            'unsubscribe'         => 'Unsubscribe from email updates.',
+            'unsubscribed'        => 'Your email subscription has been cancelled.',
+            'failure'             => 'Something went wrong with the subscription.',
+            'already-subscribed'  => 'Cannot subscribe :email because they\'re already subscribed.',
         ],
     ],
 
     'signup' => [
-        'title'    => 'سجل',
+        'title'    => 'Sign Up',
         'username' => 'Username',
-        'email'    => 'بريد إلكتروني',
-        'password' => 'كلمة السر',
+        'email'    => 'Email',
+        'password' => 'Password',
         'success'  => 'Your account has been created.',
-        'failure'  => 'حدث خطأ مع الاشتراك.',
+        'failure'  => 'Something went wrong with the signup.',
     ],
 
     'system' => [
@@ -112,13 +122,22 @@ return [
         'subscribe' => [
             'title'  => 'Subscribe to component updates',
             'body'   => 'Enter your email address to subscribe to updates for this component. If you\'re already subscribed, you\'ll already receive emails for this component.',
-            'button' => 'اشتراك',
+            'button' => 'Subscribe',
+        ],
+    ],
+
+    // Meta descriptions
+    'meta' => [
+        'description' => [
+            'incident'  => 'Details and updates about the :name incident that occurred on :date',
+            'schedule'  => 'Details about the scheduled maintenance period :name starting :startDate',
+            'subscribe' => 'Subscribe to :app in order to receive updates of incidents and scheduled maintenance periods',
+            'overview'  => 'Stay up to date with the latest service updates from :app.',
         ],
     ],
 
     // Other
     'home'            => 'Home',
-    'description'     => 'Stay up to date with the latest service updates from :app.',
     'powered_by'      => 'Powered by <a href="https://cachethq.io" class="links">Cachet</a>.',
     'timezone'        => 'Times are shown in :timezone.',
     'about_this_site' => 'About This Site',

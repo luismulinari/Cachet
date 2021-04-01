@@ -1,5 +1,9 @@
 @extends('layout.master')
 
+@section('title',  trans('cachet.subscriber.subscribe'). " | ". $siteTitle)
+
+@section('description', trans('cachet.meta.description.subscribe', ['app' => $siteTitle]))
+
 @section('content')
 <div class="pull-right">
     <p><a class="btn btn-success btn-outline" href="{{ cachet_route('status-page') }}"><i class="ion ion-home"></i></a></p>
@@ -7,7 +11,7 @@
 
 <div class="clearfix"></div>
 
-@include('dashboard.partials.errors')
+@include('partials.errors')
 
 <div class="row">
     <div class="col-xs-12 col-lg-offset-2 col-lg-8">

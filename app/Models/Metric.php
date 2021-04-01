@@ -13,6 +13,7 @@ namespace CachetHQ\Cachet\Models;
 
 use AltThree\Validator\ValidatingTrait;
 use AltThree\Validator\ValidationException;
+use CachetHQ\Cachet\Models\Traits\HasMeta;
 use CachetHQ\Cachet\Models\Traits\SortableTrait;
 use CachetHQ\Cachet\Presenters\MetricPresenter;
 use Illuminate\Database\Eloquent\Builder;
@@ -22,7 +23,9 @@ use McCool\LaravelAutoPresenter\HasPresenter;
 
 class Metric extends Model implements HasPresenter
 {
-    use SortableTrait, ValidatingTrait;
+    use HasMeta;
+    use SortableTrait;
+    use ValidatingTrait;
 
     /**
      * The calculation type of sum.
@@ -58,13 +61,6 @@ class Metric extends Model implements HasPresenter
      * @var int
      */
     const VISIBLE_HIDDEN = 2;
-
-    /**
-     * Array of acceptable threshold minutes.
-     *
-     * @var int[]
-     */
-    const ACCEPTABLE_THRESHOLDS = [1, 2, 3, 4, 5, 6, 10, 12, 15, 20, 30, 60];
 
     /**
      * The model's attributes.
@@ -131,7 +127,6 @@ class Metric extends Model implements HasPresenter
         'default_value' => 'required|numeric',
         'places'        => 'required|numeric|between:0,4',
         'default_view'  => 'required|numeric|between:0,3',
-        'threshold'     => 'required|numeric|between:0,10',
         'visible'       => 'required|numeric|between:0,2',
     ];
 
@@ -166,23 +161,13 @@ class Metric extends Model implements HasPresenter
     }
 
     /**
-     * Get all of the meta relation.
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\MorphMany
-     */
-    public function meta()
-    {
-        return $this->morphMany(Meta::class, 'meta');
-    }
-
-    /**
      * Get the points relation.
      *
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
     public function points()
     {
-        return $this->hasMany(MetricPoint::class, 'metric_id', 'id');
+        return $this->hasMany(MetricPoint::class, 'metric_id', 'id')->latest();
     }
 
     /**
@@ -194,7 +179,7 @@ class Metric extends Model implements HasPresenter
      */
     public function scopeDisplayable(Builder $query)
     {
-        return $query->where('display_chart', '=', true)->where('visible', '!=', self::VISIBLE_HIDDEN);
+        return $query->where('display_chart', '=', true)->where('visible', '<>', self::VISIBLE_HIDDEN);
     }
 
     /**

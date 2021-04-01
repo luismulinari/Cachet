@@ -19,5 +19,5 @@ return [
     'admin_account'     => 'Účet správce',
     'complete_setup'    => 'Dokončení instalace',
     'completed'         => 'Cachet byl úspěšně nakonfigurován!',
-    'finish_setup'      => 'Přejít na řídící panel',
+    'finish_setup'      => 'Přejít na dashboard',
 ];

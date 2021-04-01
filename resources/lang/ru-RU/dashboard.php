@@ -12,16 +12,30 @@
 return [
 
     'dashboard'          => 'Панель управления',
-    'writeable_settings' => 'У вас недостаточно прав на запись в папку с Cachet. Пожалуйста, убедитесь, что веб-серверу достаточно привелегий для записи в папку <code>./bootstrap/cachet</code>.',
+    'writeable_settings' => 'The Cachet settings directory is not writeable. Please make sure that <code>./bootstrap/cachet</code> is writeable by the web server.',
 
     // Incidents
     'incidents' => [
-        'title'                    => 'Инциденты и плановые работы',
+        'title'                    => 'Incidents & Maintenance',
         'incidents'                => 'Инциденты',
-        'logged'                   => '{0} Нет инцидентов, отличная работа!|У вас зарегистрирован <strong>:count</strong> инцидент.|У вас зарегистрировано <strong>:count</strong> инцидента.|У вас зарегистрировано <strong>:count</strong> инцидентов.',
+        'logged'                   => '{0}There are no incidents, good work.|[1]You have logged one incident.|[2,*]You have reported <strong>:count</strong> incidents.',
         'incident-create-template' => 'Создать шаблон',
         'incident-templates'       => 'Шаблоны инцидентов',
-        'updates'                  => '{0} Нет обновлений|Одно обновление|:count обновлений',
+        'updates'                  => [
+            'title'   => 'Incident updates for :incident',
+            'count'   => '{0}Zero Updates|[1]One Update|[2]Two Updates|[3,*]Several Updates',
+            'add'     => [
+                'title'   => 'Create new incident update',
+                'success' => 'Your new incident update has been created.',
+                'failure' => 'Something went wrong with the incident update.',
+            ],
+            'edit' => [
+                'title'   => 'Edit incident update',
+                'success' => 'The incident update has been updated.',
+                'failure' => 'Something went wrong updating the incident update',
+            ],
+        ],
+        'reported_by'              => 'Reported :timestamp by :user',
         'add'                      => [
             'title'   => 'Добавить инцидент',
             'success' => 'Инцидент добавлен.',
@@ -36,18 +50,13 @@ return [
             'success' => 'Инцидент удалён и больше не будет отображаться на статусной странице.',
             'failure' => 'Инцидент не может быть уделён, пожалуйста, попробуйте ещё раз.',
         ],
-        'update' => [
-            'title'    => 'Создать новое обновление инцидента',
-            'subtitle' => 'Добавить обновление к <strong>:incident</strong>',
-            'success'  => 'Update added.',
-        ],
 
         // Incident templates
         'templates' => [
             'title' => 'Шаблоны инцидентов',
             'add'   => [
                 'title'   => 'Создать шаблон инцидента',
-                'message' => 'Необходимо добавить шаблон инцидента.',
+                'message' => 'Create your first incident template.',
                 'success' => 'Новый шаблон инцидента создан.',
                 'failure' => 'С шаблоном инцидента что-то не так.',
             ],
@@ -65,22 +74,22 @@ return [
 
     // Incident Maintenance
     'schedule' => [
-        'schedule'     => 'Плановые работы',
-        'logged'       => '{0} Ни одного планового обслуживания не зарегистрировано.|У вас зарегистрировано <strong>:count</strong> плановое обслуживание.|У вас зарегистрировано <strong>:count</strong> плановых обслуживания.|У вас зарегистрировано <strong>:count</strong> плановых обслуживаний.',
+        'schedule'     => 'Maintenance',
+        'logged'       => '{0}There has been no Maintenance, good work.|[1]You have logged one schedule.|[2,*]You have reported <strong>:count</strong> schedules.',
         'scheduled_at' => 'Запланировано на :timestamp',
         'add'          => [
-            'title'   => 'Добавить плановые работы',
-            'success' => 'Плановые работы добавлены.',
-            'failure' => 'Что-то пошло не так при добавлении плановых работ, пожалуйста, попробуйте ещё раз.',
+            'title'   => 'Add Maintenance',
+            'success' => 'Maintenance added.',
+            'failure' => 'Something went wrong adding the Maintenance, please try again.',
         ],
         'edit' => [
-            'title'   => 'Изменить плановые работы',
-            'success' => 'Плановые работы обновлены!',
-            'failure' => 'Что-то пошло не так при изменении плановых работ, пожалуйста, попробуйте ещё раз.',
+            'title'   => 'Edit Maintenance',
+            'success' => 'Maintenance has been updated!',
+            'failure' => 'Something went wrong editing the Maintenance, please try again.',
         ],
         'delete' => [
-            'success' => 'Плановые работы удалены и больше не будут отображаться на статусной странице.',
-            'failure' => 'Плановые работы не могут быть уделены, пожалуйста, попробуйте ещё раз.',
+            'success' => 'The Maintenance has been deleted and will not show on your status page.',
+            'failure' => 'The Maintenance could not be deleted, please try again.',
         ],
     ],
 
@@ -147,13 +156,15 @@ return [
     ],
     // Subscribers
     'subscribers' => [
-        'subscribers'      => 'Подписчики',
-        'description'      => 'Подписчики будут получать уведомления по электронной почте при добавлении инцидентов или изменении статусов компонентов.',
-        'verified'         => 'Подтверждён',
-        'not_verified'     => 'Не подтверждён',
-        'subscriber'       => ':email, подписан :date',
-        'no_subscriptions' => 'Подписан на все обновления',
-        'add'              => [
+        'subscribers'          => 'Подписчики',
+        'description'          => 'Подписчики будут получать уведомления по электронной почте при добавлении инцидентов или изменении статусов компонентов.',
+        'description_disabled' => 'To use this feature, you need allow people to signup for notifications.',
+        'verified'             => 'Подтверждён',
+        'not_verified'         => 'Не подтверждён',
+        'subscriber'           => ':email, подписан :date',
+        'no_subscriptions'     => 'Подписан на все обновления',
+        'global'               => 'Globally subscribed',
+        'add'                  => [
             'title'   => 'Добавить нового подписчика',
             'success' => 'Подписчик добавлен!',
             'failure' => 'Что-то пошло не так при добавлении подписчика, пожалуйста, повторите ещё раз.',
@@ -205,7 +216,7 @@ return [
             'analytics' => 'Аналитика',
         ],
         'log' => [
-            'log' => 'Журнал',
+            'log' => 'Log',
         ],
         'localization' => [
             'localization' => 'Региональные настройки',
@@ -216,11 +227,11 @@ return [
             'footer'        => 'Нижний колонтитул HTML',
         ],
         'mail' => [
-            'mail'  => 'Электронная почта',
-            'test'  => 'Тест',
+            'mail'  => 'Mail',
+            'test'  => 'Test',
             'email' => [
-                'subject' => 'Тестовое уведомление от Cachet',
-                'body'    => 'Это тестовое уведомления от Cachet.',
+                'subject' => 'Test notification from Cachet',
+                'body'    => 'This is a test notification from Cachet.',
             ],
         ],
         'security' => [

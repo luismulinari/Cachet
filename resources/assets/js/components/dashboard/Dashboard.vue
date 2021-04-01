@@ -1,8 +1,16 @@
 <script>
+const Vue = require('vue');
+
+Vue.component('report-incident', require('./ReportIncident'));
+Vue.component('update-incident', require('./UpdateIncident'));
+Vue.component('report-schedule', require('./ReportSchedule'));
+Vue.component('invite-team', require('./InviteTeam'));
+
 module.exports = {
-    props: ['welcome-user'],
+    props: ['user'],
     mounted () {
-        if (this.welcomeUser) {
+        if (!this.user.welcomed) {
+            // @todo Replace this with a non-jquery alternative.
             $('#welcome-modal').modal('show');
         }
     },

@@ -21,12 +21,14 @@ use CachetHQ\Cachet\Models\Component;
 use CachetHQ\Cachet\Models\ComponentGroup;
 use CachetHQ\Cachet\Models\Subscriber;
 use CachetHQ\Cachet\Models\Subscription;
+use CachetHQ\Cachet\Notifications\Subscriber\ManageSubscriptionNotification;
 use GrahamCampbell\Binput\Facades\Binput;
 use GrahamCampbell\Markdown\Facades\Markdown;
 use Illuminate\Contracts\Auth\Guard;
 use Illuminate\Contracts\Config\Repository;
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\Config;
+use Illuminate\Support\Facades\URL;
 use Illuminate\Support\Facades\View;
 use Symfony\Component\HttpKernel\Exception\BadRequestHttpException;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
@@ -80,7 +82,7 @@ class SubscribeController extends Controller
         $verified = app(Repository::class)->get('setting.skip_subscriber_verification');
 
         try {
-            $subscription = dispatch(new SubscribeSubscriberCommand($email, $verified));
+            $subscription = execute(new SubscribeSubscriberCommand($email, $verified));
         } catch (ValidationException $e) {
             return cachet_redirect('status-page')
                 ->withInput(Binput::all())
@@ -88,12 +90,16 @@ class SubscribeController extends Controller
                 ->withErrors($e->getMessageBag());
         }
 
-        if ($subscription->is_verified) {
-            return cachet_redirect('status-page')->withSuccess(trans('cachet.subscriber.email.already-subscribed', ['email' => $email]));
-        }
+        // Send the subscriber a link to manage their subscription.
+        $subscription->notify(new ManageSubscriptionNotification());
 
-        return cachet_redirect('subscribe.manage', $subscription->verify_code)
-            ->withSuccess(sprintf('%s %s', trans('dashboard.notifications.awesome'), trans('cachet.subscriber.email.subscribed')));
+        return redirect()->back()->withSuccess(
+            sprintf(
+                '%s %s',
+                trans('dashboard.notifications.awesome'),
+                trans('cachet.subscriber.email.manage_subscription')
+            )
+        );
     }
 
     /**
@@ -116,11 +122,11 @@ class SubscribeController extends Controller
         }
 
         if (!$subscriber->is_verified) {
-            dispatch(new VerifySubscriberCommand($subscriber));
+            execute(new VerifySubscriberCommand($subscriber));
         }
 
-        return cachet_redirect('status-page')
-            ->withSuccess(sprintf('%s %s', trans('dashboard.notifications.awesome'), trans('cachet.subscriber.email.verified')));
+        return redirect()->to(URL::signedRoute(cachet_route_generator('subscribe.manage'), ['code' => $code]))
+            ->withSuccess(sprintf('%s %s', trans('dashboard.notifications.awesome'), trans('cachet.subscriber.email.subscribed')));
     }
 
     /**
@@ -144,9 +150,9 @@ class SubscribeController extends Controller
         }
 
         if ($subscription) {
-            dispatch(new UnsubscribeSubscriptionCommand(Subscription::forSubscriber($subscriber->id)->firstOrFail()));
+            execute(new UnsubscribeSubscriptionCommand(Subscription::forSubscriber($subscriber->id)->firstOrFail()));
         } else {
-            dispatch(new UnsubscribeSubscriberCommand($subscriber, $subscription));
+            execute(new UnsubscribeSubscriberCommand($subscriber));
         }
 
         return cachet_redirect('status-page')
@@ -204,15 +210,15 @@ class SubscribeController extends Controller
         }
 
         try {
-            dispatch(new UpdateSubscriberSubscriptionCommand($subscriber, Binput::get('subscriptions')));
+            execute(new UpdateSubscriberSubscriptionCommand($subscriber, Binput::get('subscriptions')));
         } catch (ValidationException $e) {
-            return cachet_redirect('subscribe.manage', $subscriber->verify_code)
+            return redirect()->to(URL::signedRoute(cachet_route_generator('subscribe.manage'), ['code' => $subscriber->verify_code]))
                 ->withInput(Binput::all())
                 ->withTitle(sprintf('%s %s', trans('dashboard.notifications.whoops'), trans('cachet.subscriber.email.failure')))
                 ->withErrors($e->getMessageBag());
         }
 
-        return cachet_redirect('subscribe.manage', $subscriber->verify_code)
-            ->withSuccess(sprintf('%s %s', trans('dashboard.notifications.awesome'), trans('cachet.subscriber.email.subscribed')));
+        return redirect()->to(URL::signedRoute(cachet_route_generator('subscribe.manage'), ['code' => $subscriber->verify_code]))
+            ->withSuccess(sprintf('%s %s', trans('dashboard.notifications.awesome'), trans('cachet.subscriber.email.updated-subscribe')));
     }
 }

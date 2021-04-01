@@ -18,10 +18,24 @@ return [
     'incidents' => [
         'title'                    => 'Incidents & Maintenance',
         'incidents'                => 'Incidents',
-        'logged'                   => '{0} There are no incidents, good work.|[1] You have logged one incident.|[2, Inf] You have reported <strong>:count</strong> incidents.',
+        'logged'                   => '{0}There are no incidents, good work.|[1]You have logged one incident.|[2,*]You have reported <strong>:count</strong> incidents.',
         'incident-create-template' => 'Create Template',
         'incident-templates'       => 'Incident Templates',
-        'updates'                  => '{0} Zero Updates|[1] One Update|[2] Two Updates|[3,Inf] Several Updates',
+        'updates'                  => [
+            'title'   => 'Incident updates for :incident',
+            'count'   => '{0}Zero Updates|[1]One Update|[2]Two Updates|[3,*]Several Updates',
+            'add'     => [
+                'title'   => 'Create new incident update',
+                'success' => 'Your new incident update has been created.',
+                'failure' => 'Something went wrong with the incident update.',
+            ],
+            'edit' => [
+                'title'   => 'Edit incident update',
+                'success' => 'The incident update has been updated.',
+                'failure' => 'Something went wrong updating the incident update',
+            ],
+        ],
+        'reported_by'              => 'Reported :timestamp by :user',
         'add'                      => [
             'title'   => 'Report an incident',
             'success' => 'Incident added.',
@@ -36,18 +50,13 @@ return [
             'success' => 'The incident has been deleted and will not show on your status page.',
             'failure' => 'The incident could not be deleted, please try again.',
         ],
-        'update' => [
-            'title'    => 'Create new incident update',
-            'subtitle' => 'Add an update to <strong>:incident</strong>',
-            'success'  => 'Update added.',
-        ],
 
         // Incident templates
         'templates' => [
             'title' => 'Incident Templates',
             'add'   => [
                 'title'   => 'Create an incident template',
-                'message' => 'You should add an incident template.',
+                'message' => 'Create your first incident template.',
                 'success' => 'Your new incident template has been created.',
                 'failure' => 'Something went wrong with the incident template.',
             ],
@@ -66,7 +75,7 @@ return [
     // Incident Maintenance
     'schedule' => [
         'schedule'     => 'Maintenance',
-        'logged'       => '{0} There has been no Maintenance, good work.|[1] You have logged one schedule.|[2,Inf] You have reported <strong>:count</strong> schedules.',
+        'logged'       => '{0}There has been no Maintenance, good work.|[1]You have logged one schedule.|[2,*]You have reported <strong>:count</strong> schedules.',
         'scheduled_at' => 'Scheduled at :timestamp',
         'add'          => [
             'title'   => 'Add Maintenance',

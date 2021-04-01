@@ -45,8 +45,7 @@ class MetricController extends Controller
     public function showAddMetric()
     {
         return View::make('dashboard.metrics.add')
-            ->withPageTitle(trans('dashboard.metrics.add.title').' - '.trans('dashboard.dashboard'))
-            ->withAcceptableThresholds(Metric::ACCEPTABLE_THRESHOLDS);
+            ->withPageTitle(trans('dashboard.metrics.add.title').' - '.trans('dashboard.dashboard'));
     }
 
     /**
@@ -71,7 +70,7 @@ class MetricController extends Controller
         $metricData = Binput::get('metric');
 
         try {
-            dispatch(new CreateMetricCommand(
+            execute(new CreateMetricCommand(
                 $metricData['name'],
                 $metricData['suffix'],
                 $metricData['description'],
@@ -115,7 +114,7 @@ class MetricController extends Controller
      */
     public function deleteMetricAction(Metric $metric)
     {
-        dispatch(new RemoveMetricCommand($metric));
+        execute(new RemoveMetricCommand($metric));
 
         return cachet_redirect('dashboard.metrics')
             ->withSuccess(sprintf('%s %s', trans('dashboard.notifications.awesome'), trans('dashboard.metrics.delete.success')));
@@ -132,8 +131,7 @@ class MetricController extends Controller
     {
         return View::make('dashboard.metrics.edit')
             ->withPageTitle(trans('dashboard.metrics.edit.title').' - '.trans('dashboard.dashboard'))
-            ->withMetric($metric)
-            ->withAcceptableThresholds(Metric::ACCEPTABLE_THRESHOLDS);
+            ->withMetric($metric);
     }
 
     /**
@@ -146,7 +144,7 @@ class MetricController extends Controller
     public function editMetricAction(Metric $metric)
     {
         try {
-            dispatch(new UpdateMetricCommand(
+            execute(new UpdateMetricCommand(
                 $metric,
                 Binput::get('name', null, false),
                 Binput::get('suffix', null, false),

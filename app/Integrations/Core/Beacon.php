@@ -25,6 +25,7 @@ use CachetHQ\Cachet\Settings\Repository as Setting;
 use Exception;
 use GuzzleHttp\Client;
 use Illuminate\Contracts\Config\Repository;
+use Illuminate\Support\Str;
 
 /**
  * This is the beacon class.
@@ -81,25 +82,20 @@ class Beacon implements BeaconContract
             return;
         }
 
-        if (!($contactEmail = User::admins()->active()->first()->email)) {
-            $contactEmail = null;
-        }
-
         $setting = app(Setting::class);
 
         if (!$installId = $setting->get('install_id', null)) {
-            $installId = sha1(str_random(20));
+            $installId = sha1(Str::random(20));
 
             $setting->set('install_id', $installId);
         }
 
         $payload = [
-            'install_id'    => $installId,
-            'version'       => CACHET_VERSION,
-            'docker'        => $this->config->get('cachet.is_docker'),
-            'database'      => $this->config->get('database.default'),
-            'contact_email' => $contactEmail,
-            'data'          => [
+            'install_id' => $installId,
+            'version'    => CACHET_VERSION,
+            'docker'     => $this->config->get('cachet.is_docker'),
+            'database'   => $this->config->get('database.default'),
+            'data'       => [
                 'components' => Component::all()->count(),
                 'incidents'  => Incident::all()->count(),
                 'metrics'    => Metric::all()->count(),

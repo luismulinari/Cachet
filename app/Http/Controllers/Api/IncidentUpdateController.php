@@ -38,7 +38,7 @@ class IncidentUpdateController extends AbstractApiController
      */
     public function index(Incident $incident)
     {
-        $updates = IncidentUpdate::orderBy('created_at', 'desc');
+        $updates = $incident->updates()->orderBy('created_at', 'desc');
 
         if ($sortBy = Binput::get('sort')) {
             $direction = Binput::has('order') && Binput::get('order') == 'desc';
@@ -74,10 +74,12 @@ class IncidentUpdateController extends AbstractApiController
     public function store(Incident $incident)
     {
         try {
-            $update = dispatch(new CreateIncidentUpdateCommand(
+            $update = execute(new CreateIncidentUpdateCommand(
                 $incident,
                 Binput::get('status'),
                 Binput::get('message'),
+                Binput::get('component_id'),
+                Binput::get('component_status'),
                 Auth::user()
             ));
         } catch (QueryException $e) {
@@ -98,7 +100,7 @@ class IncidentUpdateController extends AbstractApiController
     public function update(Incident $incident, IncidentUpdate $update)
     {
         try {
-            $update = dispatch(new UpdateIncidentUpdateCommand(
+            $update = execute(new UpdateIncidentUpdateCommand(
                 $update,
                 Binput::get('status'),
                 Binput::get('message'),
@@ -122,7 +124,7 @@ class IncidentUpdateController extends AbstractApiController
     public function destroy(Incident $incident, IncidentUpdate $update)
     {
         try {
-            dispatch(new RemoveIncidentUpdateCommand($update));
+            execute(new RemoveIncidentUpdateCommand($update));
         } catch (QueryException $e) {
             throw new BadRequestHttpException();
         }

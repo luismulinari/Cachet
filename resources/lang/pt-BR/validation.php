@@ -61,7 +61,7 @@ return [
     ],
     'mimes' => 'O campo :attribute deve ser um arquivo do tipo: :values.',
     'min'   => [
-        'numeric' => 'O campo :attribute deve ser no mínimo :min.',
+        'numeric' => 'O campo :attribute deve ter no mínimo :min.',
         'file'    => 'O :attribute deve ter pelo menos :min kilobytes.',
         'string'  => 'O campo :attribute deve ter no mínimo :min caracteres.',
         'array'   => 'O campo :attribute deve ter no mínimo :min itens.',
@@ -79,7 +79,7 @@ return [
     'required_without_all' => 'O campo :attribute é obrigatório quando nenhum dos :values está presente.',
     'same'                 => 'O campo :attribute e :other devem ser iguais.',
     'size'                 => [
-        'numeric' => 'O campo :attribute deve ser :size.',
+        'numeric' => 'O campo :attribute deve ter :size caracteres.',
         'file'    => 'O :attribute deve ter :size kilobytes.',
         'string'  => 'O :attribute deve ter :size caracteres.',
         'array'   => 'O campo :attribute deve ter :size itens.',

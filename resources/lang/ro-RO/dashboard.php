@@ -16,12 +16,26 @@ return [
 
     // Incidents
     'incidents' => [
-        'title'                    => 'Incidente &amp; Planificare',
+        'title'                    => 'Incidents & Maintenance',
         'incidents'                => 'Incidente',
-        'logged'                   => '{0} Nu sunt incidente, bravo! | Ai adăugat un incident. | Ai raportat <strong>:count</strong> incidente.',
+        'logged'                   => '{0}There are no incidents, good work.|[1]You have logged one incident.|[2,*]You have reported <strong>:count</strong> incidents.',
         'incident-create-template' => 'Crează şablon',
         'incident-templates'       => 'Şabloane incident',
-        'updates'                  => '{0} Nicio actualizare|O actualizare|:count Actualizări',
+        'updates'                  => [
+            'title'   => 'Incident updates for :incident',
+            'count'   => '{0}Zero Updates|[1]One Update|[2]Two Updates|[3,*]Several Updates',
+            'add'     => [
+                'title'   => 'Create new incident update',
+                'success' => 'Your new incident update has been created.',
+                'failure' => 'Something went wrong with the incident update.',
+            ],
+            'edit' => [
+                'title'   => 'Edit incident update',
+                'success' => 'The incident update has been updated.',
+                'failure' => 'Something went wrong updating the incident update',
+            ],
+        ],
+        'reported_by'              => 'Reported :timestamp by :user',
         'add'                      => [
             'title'   => 'Raportează un incident',
             'success' => 'Incidentul a fost adăugat.',
@@ -36,18 +50,13 @@ return [
             'success' => 'Incidentul a fost şters şi nu va mai apărea pe pagina de status.',
             'failure' => 'Incidentul nu a putut fi şters, vă rugăm încercaţi din nou.',
         ],
-        'update' => [
-            'title'    => 'Adaugă o nouă actualizare a incidentului',
-            'subtitle' => 'Adaugă o actualizare la <strong>:incident</strong>',
-            'success'  => 'Update added.',
-        ],
 
         // Incident templates
         'templates' => [
             'title' => 'Şabloane incident',
             'add'   => [
                 'title'   => 'Adaugă un nou şablon pentru incident',
-                'message' => 'Trebuie să adaugi un şablon pentru incident.',
+                'message' => 'Create your first incident template.',
                 'success' => 'Noul şablon pentru incident a fost creat.',
                 'failure' => 'Ceva nu a funcționat legat de șablonul incidentului.',
             ],
@@ -65,22 +74,22 @@ return [
 
     // Incident Maintenance
     'schedule' => [
-        'schedule'     => 'Întreținere programată',
-        'logged'       => '{0} Nu există programări, bravo.|Ai o singură programare.|Ai <strong>:count</strong> programări.',
+        'schedule'     => 'Maintenance',
+        'logged'       => '{0}There has been no Maintenance, good work.|[1]You have logged one schedule.|[2,*]You have reported <strong>:count</strong> schedules.',
         'scheduled_at' => 'Programat la :timestamp',
         'add'          => [
-            'title'   => 'Adăugaţi Programare Mentenanţă',
-            'success' => 'Programare adăugată.',
-            'failure' => 'Ceva nu a funcționat legat de adăugarea unei programări, vă rugăm încercați din nou.',
+            'title'   => 'Add Maintenance',
+            'success' => 'Maintenance added.',
+            'failure' => 'Something went wrong adding the Maintenance, please try again.',
         ],
         'edit' => [
-            'title'   => 'Modificați Programarea Mentenanței',
-            'success' => 'Programarea a fost actualizată!',
-            'failure' => 'Ceva nu a funcționat legat de modificarea programării, vă rugăm încercați din nou.',
+            'title'   => 'Edit Maintenance',
+            'success' => 'Maintenance has been updated!',
+            'failure' => 'Something went wrong editing the Maintenance, please try again.',
         ],
         'delete' => [
-            'success' => 'Programarea mentenanței a fost ștearsă și nu va mai apărea pe pagina dvs. de stare.',
-            'failure' => 'Programarea mentenanței nu a putut fi ștearsă, vă rugăm încercați din nou.',
+            'success' => 'The Maintenance has been deleted and will not show on your status page.',
+            'failure' => 'The Maintenance could not be deleted, please try again.',
         ],
     ],
 
@@ -147,13 +156,15 @@ return [
     ],
     // Subscribers
     'subscribers' => [
-        'subscribers'      => 'Abonați',
-        'description'      => 'Abonații vor primi actualizări prin email când incidente noi sunt adăugate sau componentele sunt actualizate.',
-        'verified'         => 'Verificat',
-        'not_verified'     => 'Neverificat',
-        'subscriber'       => ':email, abonat la :date',
-        'no_subscriptions' => 'Ați fost abonat la toate actualizările',
-        'add'              => [
+        'subscribers'          => 'Abonați',
+        'description'          => 'Abonații vor primi actualizări prin email când incidente noi sunt adăugate sau componentele sunt actualizate.',
+        'description_disabled' => 'To use this feature, you need allow people to signup for notifications.',
+        'verified'             => 'Verificat',
+        'not_verified'         => 'Neverificat',
+        'subscriber'           => ':email, abonat la :date',
+        'no_subscriptions'     => 'Ați fost abonat la toate actualizările',
+        'global'               => 'Globally subscribed',
+        'add'                  => [
             'title'   => 'Adaugă un nou abonat',
             'success' => 'Abonatul a fost adăugat!',
             'failure' => 'Ceva nu a funcționat legat de adăugarea abonatului, vă rugăm încercați din nou.',
@@ -205,7 +216,7 @@ return [
             'analytics' => 'Analize',
         ],
         'log' => [
-            'log' => 'Jurnal',
+            'log' => 'Log',
         ],
         'localization' => [
             'localization' => 'Localizare',

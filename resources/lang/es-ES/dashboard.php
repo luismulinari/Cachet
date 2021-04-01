@@ -12,16 +12,30 @@
 return [
 
     'dashboard'          => 'Panel de Control',
-    'writeable_settings' => 'El directorio de configuración de Cachet no es escribible. Por favor, asegúrese de que <code>./bootstrap/cachet</code> es escribible por el servidor web.',
+    'writeable_settings' => 'The Cachet settings directory is not writeable. Please make sure that <code>./bootstrap/cachet</code> is writeable by the web server.',
 
     // Incidents
     'incidents' => [
-        'title'                    => 'Incidencias y horario',
+        'title'                    => 'Incidents & Maintenance',
         'incidents'                => 'Incidentes',
-        'logged'                   => '{0} No hay incidencias, ¡buen trabajo!|Has registrado una incidencia.|Has reportado <strong>:count</strong> incidencias.',
+        'logged'                   => '{0}There are no incidents, good work.|[1]You have logged one incident.|[2,*]You have reported <strong>:count</strong> incidents.',
         'incident-create-template' => 'Crear plantilla',
         'incident-templates'       => 'Plantillas de incidente',
-        'updates'                  => '{0} Cero actualizaciones|Una actualización|:count actualizaciones',
+        'updates'                  => [
+            'title'   => 'Incident updates for :incident',
+            'count'   => '{0}Zero Updates|[1]One Update|[2]Two Updates|[3,*]Several Updates',
+            'add'     => [
+                'title'   => 'Create new incident update',
+                'success' => 'Your new incident update has been created.',
+                'failure' => 'Something went wrong with the incident update.',
+            ],
+            'edit' => [
+                'title'   => 'Edit incident update',
+                'success' => 'The incident update has been updated.',
+                'failure' => 'Something went wrong updating the incident update',
+            ],
+        ],
+        'reported_by'              => 'Reported :timestamp by :user',
         'add'                      => [
             'title'   => 'Reportar incidente',
             'success' => 'Incidente agregado.',
@@ -36,18 +50,13 @@ return [
             'success' => 'El incidente se ha eliminado y no se mostrará en tu página de estado.',
             'failure' => 'El incidente no se pudo eliminar, por favor intente de nuevo.',
         ],
-        'update' => [
-            'title'    => 'Crea una nueva actualización de incidente',
-            'subtitle' => 'Agrega una actualización a <strong>:incident</strong>',
-            'success'  => 'Update added.',
-        ],
 
         // Incident templates
         'templates' => [
             'title' => 'Plantillas de incidente',
             'add'   => [
                 'title'   => 'Crear una plantilla de incidente',
-                'message' => 'Deberías añadir una plantilla de incidente.',
+                'message' => 'Create your first incident template.',
                 'success' => 'Su nueva plantilla de incidentes ha sido creada.',
                 'failure' => 'Algo salió mal con la plantilla de incidente.',
             ],
@@ -65,22 +74,22 @@ return [
 
     // Incident Maintenance
     'schedule' => [
-        'schedule'     => 'Mantenimiento programado',
-        'logged'       => '{0} No hay planificaciones, buen trabajo.|Has registrado una planificación.|Has registrado <strong>:count</strong> planificaciones.',
+        'schedule'     => 'Maintenance',
+        'logged'       => '{0}There has been no Maintenance, good work.|[1]You have logged one schedule.|[2,*]You have reported <strong>:count</strong> schedules.',
         'scheduled_at' => 'Programado para :timestamp',
         'add'          => [
-            'title'   => 'Agregar mantenimiento programado',
-            'success' => 'Planificación agregada.',
-            'failure' => 'Algo salió mal agregando la planificación, por favor intente de nuevo.',
+            'title'   => 'Add Maintenance',
+            'success' => 'Maintenance added.',
+            'failure' => 'Something went wrong adding the Maintenance, please try again.',
         ],
         'edit' => [
-            'title'   => 'Editar Mantenimiento Programado',
-            'success' => 'La planificación ha sido actualizada!',
-            'failure' => 'Algo salió mal editando la planificación, por favor intente de nuevo.',
+            'title'   => 'Edit Maintenance',
+            'success' => 'Maintenance has been updated!',
+            'failure' => 'Something went wrong editing the Maintenance, please try again.',
         ],
         'delete' => [
-            'success' => 'La planificación ha sido eliminada y no será mostrada en su página de estado.',
-            'failure' => 'El mantenimiento programado no pudo ser eliminado, por favor, inténtelo de nuevo.',
+            'success' => 'The Maintenance has been deleted and will not show on your status page.',
+            'failure' => 'The Maintenance could not be deleted, please try again.',
         ],
     ],
 
@@ -147,13 +156,15 @@ return [
     ],
     // Subscribers
     'subscribers' => [
-        'subscribers'      => 'Suscriptores',
-        'description'      => 'Los suscriptores recibirán actualizaciones por correo electrónico cuando se creen incidentes o se actualicen componentes.',
-        'verified'         => 'Verificado',
-        'not_verified'     => 'No confirmado',
-        'subscriber'       => ':email, suscrito :date',
-        'no_subscriptions' => 'Suscrito a todas las actualizaciones',
-        'add'              => [
+        'subscribers'          => 'Suscriptores',
+        'description'          => 'Los suscriptores recibirán actualizaciones por correo electrónico cuando se creen incidentes o se actualicen componentes.',
+        'description_disabled' => 'To use this feature, you need allow people to signup for notifications.',
+        'verified'             => 'Verificado',
+        'not_verified'         => 'No confirmado',
+        'subscriber'           => ':email, suscrito :date',
+        'no_subscriptions'     => 'Suscrito a todas las actualizaciones',
+        'global'               => 'Globally subscribed',
+        'add'                  => [
             'title'   => 'Agregar un nuevo subscriptor',
             'success' => 'Subscriptor agregado.',
             'failure' => 'Algo salió mal al agregar el suscriptor, por favor, inténtelo de nuevo.',
@@ -205,7 +216,7 @@ return [
             'analytics' => 'Analytics',
         ],
         'log' => [
-            'log' => 'Registro',
+            'log' => 'Log',
         ],
         'localization' => [
             'localization' => 'Localización',
@@ -216,11 +227,11 @@ return [
             'footer'        => 'Pie HTML personalizado',
         ],
         'mail' => [
-            'mail'  => 'Correo',
-            'test'  => 'Prueba',
+            'mail'  => 'Mail',
+            'test'  => 'Test',
             'email' => [
-                'subject' => 'Notificación de prueba de Cachet',
-                'body'    => 'Ésta es una notificación de prueba de Cachet.',
+                'subject' => 'Test notification from Cachet',
+                'body'    => 'This is a test notification from Cachet.',
             ],
         ],
         'security' => [

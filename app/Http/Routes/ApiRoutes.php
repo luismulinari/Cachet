@@ -40,19 +40,18 @@ class ApiRoutes
             'namespace'  => 'Api',
             'prefix'     => 'api/v1',
         ], function (Registrar $router) {
-            $router->group(['middleware' => ['auth.api']], function (Registrar $router) {
-                $router->get('ping', 'GeneralController@ping');
-                $router->get('version', 'GeneralController@version');
-                $router->get('status', 'GeneralController@status');
-
+            $router->group(['middleware' => ['auth.api', 'cors']], function (Registrar $router) {
                 $router->get('components', 'ComponentController@index');
                 $router->get('components/groups', 'ComponentGroupController@index');
                 $router->get('components/groups/{component_group}', 'ComponentGroupController@show');
                 $router->get('components/{component}', 'ComponentController@show');
 
                 $router->get('incidents', 'IncidentController@index');
-                $router->get('incidents/{incident}', 'IncidentController@show');
 
+                $router->get('incidents/templates', 'IncidentTemplateController@index');
+                $router->get('incidents/templates/{incident_template}', 'IncidentTemplateController@show');
+
+                $router->get('incidents/{incident}', 'IncidentController@show');
                 $router->get('incidents/{incident}/updates', 'IncidentUpdateController@index');
                 $router->get('incidents/{incident}/updates/{update}', 'IncidentUpdateController@show');
 

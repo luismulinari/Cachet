@@ -24,7 +24,8 @@ use MailThief\Testing\InteractsWithMail;
  */
 class ComponentStatusWasChangedEventTest extends AbstractComponentEventTestCase
 {
-    use DatabaseMigrations, InteractsWithMail;
+    use DatabaseMigrations;
+    use InteractsWithMail;
 
     public function testComponentUpdateEmailWasSent()
     {

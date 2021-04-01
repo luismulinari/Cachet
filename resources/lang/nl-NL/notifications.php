@@ -85,6 +85,14 @@ return [
                 'action'  => 'Verifiëren',
             ],
         ],
+        'manage' => [
+            'mail' => [
+                'subject' => 'Manage Your Subscription',
+                'content' => 'Click to manage your subscription to :app_name status page.',
+                'title'   => 'Click to manage your subscription to :app_name status page.',
+                'action'  => 'Abonnement beheren',
+            ],
+        ],
     ],
     'system' => [
         'test' => [
@@ -98,7 +106,7 @@ return [
     'user' => [
         'invite' => [
             'mail' => [
-                'subject' => 'Je uitnodiging zit in deze mail...',
+                'subject' => 'Je uitnodiging zit in deze e-mail...',
                 'content' => 'Je bent uitgenodigd voor de :app_name statuspagina.',
                 'title'   => 'Je bent uitgenodigd voor :app_name statuspagina.',
                 'action'  => 'Accepteer',

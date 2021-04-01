@@ -69,12 +69,12 @@ return [
     'not_in'               => 'The selected :attribute is invalid.',
     'numeric'              => 'The :attribute must be a number.',
     'present'              => 'The :attribute field must be present.',
-    'regex'                => 'Formatet af :attribute er ugyldigt.',
+    'regex'                => 'The :attribute format is invalid.',
     'required'             => 'The :attribute field is required.',
     'required_if'          => 'The :attribute field is required when :other is :value.',
     'required_unless'      => ':attribute feltet er påkrævet, medmindre :other er i :values.',
-    'required_with'        => 'Feltet :attribute er krævet når :values eksisterer.',
-    'required_with_all'    => 'Feltet :attribute er krævet når :values eksisterer.',
+    'required_with'        => 'The :attribute field is required when :values is present.',
+    'required_with_all'    => 'The :attribute field is required when :values is present.',
     'required_without'     => 'The :attribute field is required when :values is not present.',
     'required_without_all' => 'The :attribute field is required when none of :values are present.',
     'same'                 => 'The :attribute and :other must match.',
@@ -87,7 +87,7 @@ return [
     'string'   => 'The :attribute must be a string.',
     'timezone' => ':attribute skal være en gyldig zone.',
     'unique'   => ':attribute er allerede i brug.',
-    'url'      => 'Formatet af :attribute er ugyldigt.',
+    'url'      => 'The :attribute format is invalid.',
 
     /*
     |--------------------------------------------------------------------------

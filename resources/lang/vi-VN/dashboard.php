@@ -16,43 +16,52 @@ return [
 
     // Incidents
     'incidents' => [
-        'title'                    => 'Sự cố &amp; Lịch trình',
-        'incidents'                => 'Các sự cố',
-        'logged'                   => '{0} Không có sự cố nào, làm việc tốt.|Bạn có một sự cố được ghi nhận.|Bạn có <strong>:count</strong> sự cố được báo cáo.',
-        'incident-create-template' => 'Tạo template',
-        'incident-templates'       => 'Mẫu sự cố',
-        'updates'                  => '{0} Zero Updates|One Update|:count Updates',
+        'title'                    => 'Incidents & Maintenance',
+        'incidents'                => 'Incidents',
+        'logged'                   => '{0}There are no incidents, good work.|[1]You have logged one incident.|[2,*]You have reported <strong>:count</strong> incidents.',
+        'incident-create-template' => 'Create Template',
+        'incident-templates'       => 'Incident Templates',
+        'updates'                  => [
+            'title'   => 'Incident updates for :incident',
+            'count'   => '{0}Zero Updates|[1]One Update|[2]Two Updates|[3,*]Several Updates',
+            'add'     => [
+                'title'   => 'Create new incident update',
+                'success' => 'Your new incident update has been created.',
+                'failure' => 'Something went wrong with the incident update.',
+            ],
+            'edit' => [
+                'title'   => 'Edit incident update',
+                'success' => 'The incident update has been updated.',
+                'failure' => 'Something went wrong updating the incident update',
+            ],
+        ],
+        'reported_by'              => 'Reported :timestamp by :user',
         'add'                      => [
-            'title'   => 'Thêm một sự cố',
-            'success' => 'Sự cố đã được thêm.',
-            'failure' => 'Có một lỗi xảy ra khi đang lưu Sự Cố, xin vui lòng thử lại.',
+            'title'   => 'Report an incident',
+            'success' => 'Incident added.',
+            'failure' => 'There was an error adding the incident, please try again.',
         ],
         'edit' => [
-            'title'   => 'Chỉnh sửa một sự cố',
-            'success' => 'Sự cố đã được cập nhật.',
-            'failure' => 'Có một lỗi xảy ra khi đang lưu Sự Cố, xin vui lòng thử lại.',
+            'title'   => 'Edit an incident',
+            'success' => 'Incident updated.',
+            'failure' => 'There was an error editing the incident, please try again.',
         ],
         'delete' => [
             'success' => 'The incident has been deleted and will not show on your status page.',
             'failure' => 'The incident could not be deleted, please try again.',
         ],
-        'update' => [
-            'title'    => 'Create new incident update',
-            'subtitle' => 'Add an update to <strong>:incident</strong>',
-            'success'  => 'Update added.',
-        ],
 
         // Incident templates
         'templates' => [
-            'title' => 'Mẫu sự cố',
+            'title' => 'Incident Templates',
             'add'   => [
-                'title'   => 'Tạo ra một khuôn mẫu khi gặp sự cố',
-                'message' => 'You should add an incident template.',
+                'title'   => 'Create an incident template',
+                'message' => 'Create your first incident template.',
                 'success' => 'Your new incident template has been created.',
                 'failure' => 'Something went wrong with the incident template.',
             ],
             'edit' => [
-                'title'   => 'Sửa mẫu',
+                'title'   => 'Edit Template',
                 'success' => 'The incident template has been updated.',
                 'failure' => 'Something went wrong updating the incident template',
             ],
@@ -65,22 +74,22 @@ return [
 
     // Incident Maintenance
     'schedule' => [
-        'schedule'     => 'Bảo trì định kỳ',
-        'logged'       => '{0} There are no schedules, good work.|You have logged one schedule.|You have reported <strong>:count</strong> schedules.',
-        'scheduled_at' => 'Định kỳ lúc :timestamp',
+        'schedule'     => 'Maintenance',
+        'logged'       => '{0}There has been no Maintenance, good work.|[1]You have logged one schedule.|[2,*]You have reported <strong>:count</strong> schedules.',
+        'scheduled_at' => 'Scheduled at :timestamp',
         'add'          => [
-            'title'   => 'Add Scheduled Maintenance',
-            'success' => 'Schedule added.',
-            'failure' => 'Something went wrong adding the schedule, please try again.',
+            'title'   => 'Add Maintenance',
+            'success' => 'Maintenance added.',
+            'failure' => 'Something went wrong adding the Maintenance, please try again.',
         ],
         'edit' => [
-            'title'   => 'Edit Scheduled Maintenance',
-            'success' => 'Schedule has been updated!',
-            'failure' => 'Something went wrong editing the schedule, please try again.',
+            'title'   => 'Edit Maintenance',
+            'success' => 'Maintenance has been updated!',
+            'failure' => 'Something went wrong editing the Maintenance, please try again.',
         ],
         'delete' => [
-            'success' => 'The scheduled maintenance has been deleted and will not show on your status page.',
-            'failure' => 'The scheduled maintenance could not be deleted, please try again.',
+            'success' => 'The Maintenance has been deleted and will not show on your status page.',
+            'failure' => 'The Maintenance could not be deleted, please try again.',
         ],
     ],
 
@@ -90,13 +99,13 @@ return [
         'component_statuses' => 'Component Statuses',
         'listed_group'       => 'Grouped under :name',
         'add'                => [
-            'title'   => 'Thêm một thành phần',
-            'message' => 'Bạn cần thêm một component.',
+            'title'   => 'Add a component',
+            'message' => 'You should add a component.',
             'success' => 'Component created.',
             'failure' => 'Something went wrong with the component group, please try again.',
         ],
         'edit' => [
-            'title'   => 'Chỉnh sửa một thành phần',
+            'title'   => 'Edit a component',
             'success' => 'Component updated.',
             'failure' => 'Something went wrong with the component group, please try again.',
         ],
@@ -128,7 +137,7 @@ return [
 
     // Metrics
     'metrics' => [
-        'metrics' => 'Các số liệu',
+        'metrics' => 'Metrics',
         'add'     => [
             'title'   => 'Create a metric',
             'message' => 'You should add a metric.',
@@ -147,13 +156,15 @@ return [
     ],
     // Subscribers
     'subscribers' => [
-        'subscribers'      => 'Subscribers',
-        'description'      => 'Subscribers will receive email updates when incidents are created or components are updated.',
-        'verified'         => 'Đã xác nhận',
-        'not_verified'     => 'Chưa xác nhận',
-        'subscriber'       => ':email, subscribed :date',
-        'no_subscriptions' => 'Subscribed to all updates',
-        'add'              => [
+        'subscribers'          => 'Subscribers',
+        'description'          => 'Subscribers will receive email updates when incidents are created or components are updated.',
+        'description_disabled' => 'To use this feature, you need allow people to signup for notifications.',
+        'verified'             => 'Verified',
+        'not_verified'         => 'Not verified',
+        'subscriber'           => ':email, subscribed :date',
+        'no_subscriptions'     => 'Subscribed to all updates',
+        'global'               => 'Globally subscribed',
+        'add'                  => [
             'title'   => 'Add a new subscriber',
             'success' => 'Subscriber has been added!',
             'failure' => 'Something went wrong adding the subscriber, please try again.',
@@ -168,10 +179,10 @@ return [
 
     // Team
     'team' => [
-        'team'        => 'Nhóm',
-        'member'      => 'Thành viên',
-        'profile'     => 'Hồ sơ cá nhân',
-        'description' => 'Thành viên trong đội sẽ có thể để thêm, sửa đổi và chỉnh sửa các thành phần và sự cố.',
+        'team'        => 'Team',
+        'member'      => 'Member',
+        'profile'     => 'Profile',
+        'description' => 'Team Members will be able to add, modify & edit components and incidents.',
         'add'         => [
             'title'   => 'Add a new team member',
             'success' => 'Team member added.',
@@ -195,20 +206,20 @@ return [
 
     // Settings
     'settings' => [
-        'settings'  => 'Thiết lập',
+        'settings'  => 'Settings',
         'app-setup' => [
-            'app-setup'   => 'Thiết lập ứng dụng',
-            'images-only' => 'Chỉ có thể upload ảnh.',
-            'too-big'     => 'File bạn vừa upload có kích thước quá lớn, hãy upload ảnh có kích thước nhỏ hơn :size',
+            'app-setup'   => 'Application Setup',
+            'images-only' => 'Only images may be uploaded.',
+            'too-big'     => 'The file you uploaded is too big. Upload an image smaller than :size',
         ],
         'analytics' => [
-            'analytics' => 'Thống kê',
+            'analytics' => 'Analytics',
         ],
         'log' => [
             'log' => 'Log',
         ],
         'localization' => [
-            'localization' => 'Bản địa hoá',
+            'localization' => 'Localization',
         ],
         'customization' => [
             'customization' => 'Customization',
@@ -224,7 +235,7 @@ return [
             ],
         ],
         'security' => [
-            'security'   => 'Bảo mật',
+            'security'   => 'Security',
             'two-factor' => 'Users without two-factor authentication',
         ],
         'stylesheet' => [
@@ -234,8 +245,8 @@ return [
             'theme' => 'Theme',
         ],
         'edit' => [
-            'success' => 'Các setting đã được lưu.',
-            'failure' => 'Không thể lưu các settings.',
+            'success' => 'Settings saved.',
+            'failure' => 'Settings could not be saved.',
         ],
         'credits' => [
             'credits'       => 'Credits',
@@ -249,22 +260,22 @@ return [
 
     // Login
     'login' => [
-        'login'      => 'Đăng nhập',
-        'logged_in'  => 'Bạn đang đăng nhập.',
-        'welcome'    => 'Chào mừng Quay trở lại!',
-        'two-factor' => 'Vui lòng nhập mã token của bạn',
+        'login'      => 'Login',
+        'logged_in'  => 'You\'re logged in.',
+        'welcome'    => 'Welcome back!',
+        'two-factor' => 'Please enter your token.',
     ],
 
     // Sidebar footer
-    'help'        => 'Trợ giúp',
-    'status_page' => 'Trang trang thái',
-    'logout'      => 'Đăng xuất',
+    'help'        => 'Help',
+    'status_page' => 'Status Page',
+    'logout'      => 'Logout',
 
     // Notifications
     'notifications' => [
-        'notifications' => 'Thông báo',
-        'awesome'       => 'Tuyệt vời.',
-        'whoops'        => 'Ôi.',
+        'notifications' => 'Notifications',
+        'awesome'       => 'Awesome.',
+        'whoops'        => 'Whoops.',
     ],
 
     // Widgets
@@ -278,15 +289,15 @@ return [
     // Welcome modal
     'welcome' => [
         'welcome' => 'Welcome to your new status page, :username!',
-        'message' => 'Trang trái thái cảu bạn gần như đã sẵn sàng. Bạn có thể muốn cấu hình mình vài thiết lập phụ',
+        'message' => 'You\'re almost ready but you might want to configure these extra settings first...',
         'close'   => 'I\'m good thanks!',
         'steps'   => [
-            'component'  => 'Tạo thành phần',
-            'incident'   => 'Tạo sự cố',
-            'customize'  => 'Tùy chỉnh',
-            'team'       => 'Thêm người dùng',
-            'api'        => 'Tạo API token',
-            'two-factor' => 'Xác minh 2 bước',
+            'component'  => 'Add your components',
+            'incident'   => 'Create an incident',
+            'customize'  => 'Customize your page',
+            'team'       => 'Add your team',
+            'api'        => 'Generate an API token',
+            'two-factor' => 'Setup Two Factor Authentication',
         ],
     ],
 

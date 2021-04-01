@@ -17,11 +17,12 @@ use CachetHQ\Cachet\Bus\Events\User\UserLoggedOutEvent;
 use CachetHQ\Cachet\Bus\Events\User\UserPassedTwoAuthEvent;
 use GrahamCampbell\Binput\Facades\Binput;
 use Illuminate\Routing\Controller;
+use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\View;
-use PragmaRX\Google2FA\Vendor\Laravel\Facade as Google2FA;
+use PragmaRX\Google2FA\Google2FA;
 
 class AuthController extends Controller
 {
@@ -47,9 +48,9 @@ class AuthController extends Controller
 
         // Login with username or email.
         $loginKey = filter_var($loginData['username'], FILTER_VALIDATE_EMAIL) ? 'email' : 'username';
-        $loginData[$loginKey] = array_pull($loginData, 'username');
+        $loginData[$loginKey] = Arr::pull($loginData, 'username');
 
-        $rememberUser = array_pull($loginData, 'remember_me') === '1';
+        $rememberUser = Arr::pull($loginData, 'remember_me') === '1';
 
         // Validate login credentials.
         if (Auth::validate($loginData)) {
@@ -88,6 +89,10 @@ class AuthController extends Controller
      *
      * This feels very hacky, but we have to juggle authentication and codes.
      *
+     * @throws \PragmaRX\Google2FA\Exceptions\IncompatibleWithGoogleAuthenticatorException
+     * @throws \PragmaRX\Google2FA\Exceptions\InvalidCharactersException
+     * @throws \PragmaRX\Google2FA\Exceptions\SecretKeyTooShortException
+     *
      * @return \Illuminate\Http\RedirectResponse
      */
     public function postTwoFactor()
@@ -101,7 +106,8 @@ class AuthController extends Controller
 
             $user = Auth::user();
 
-            $valid = Google2FA::verifyKey($user->google_2fa_secret, $code);
+            $google2fa = new Google2FA();
+            $valid = $google2fa->verifyKey($user->google_2fa_secret, $code);
 
             if ($valid) {
                 event(new UserPassedTwoAuthEvent($user));

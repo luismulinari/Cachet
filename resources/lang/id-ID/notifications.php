@@ -13,84 +13,92 @@ return [
     'component' => [
         'status_update' => [
             'mail' => [
-                'subject'  => 'Component Status Updated',
-                'greeting' => 'A component\'s status was updated!',
-                'content'  => ':name status changed from :old_status to :new_status.',
-                'action'   => 'View',
+                'subject'  => 'Status Komponen Telah Diperbarui',
+                'greeting' => 'Sebuah status komponen telah diperbarui!',
+                'content'  => 'Status :name telah berubah dari :old_status ke :new_status.',
+                'action'   => 'Lihat',
             ],
             'slack' => [
-                'title'   => 'Component Status Updated',
-                'content' => ':name status changed from :old_status to :new_status.',
+                'title'   => 'Status Komponen Telah Diperbarui',
+                'content' => 'Status :name telah berubah dari :old_status ke :new_status.',
             ],
             'sms' => [
-                'content' => ':name status changed from :old_status to :new_status.',
+                'content' => 'Status :name telah berubah dari :old_status ke :new_status.',
             ],
         ],
     ],
     'incident' => [
         'new' => [
             'mail' => [
-                'subject'  => 'New Incident Reported',
-                'greeting' => 'A new incident was reported at :app_name.',
-                'content'  => 'Incident :name was reported',
-                'action'   => 'View',
+                'subject'  => 'Insiden baru telah dilaporkan',
+                'greeting' => 'Sebuah insiden baru dilaporkan di :app_name.',
+                'content'  => 'Insiden :name dilaporkan',
+                'action'   => 'Lihat',
             ],
             'slack' => [
-                'title'   => 'Incident :name Reported',
-                'content' => 'A new incident was reported at :app_name',
+                'title'   => 'Insiden :name Dilaporkan',
+                'content' => 'Sebuah insiden baru dilaporkan di :app_name',
             ],
             'sms' => [
-                'content' => 'A new incident was reported at :app_name.',
+                'content' => 'Sebuah insiden baru dilaporkan di :app_name.',
             ],
         ],
         'update' => [
             'mail' => [
-                'subject' => 'Incident Updated',
-                'content' => ':name was updated',
-                'title'   => ':name was updated to :new_status',
-                'action'  => 'View',
+                'subject' => 'Insiden Diperbarui',
+                'content' => ':name telah diperbarui',
+                'title'   => ':name telah diperbarui menjadi :new_status',
+                'action'  => 'Lihat',
             ],
             'slack' => [
-                'title'   => ':name Updated',
-                'content' => ':name was updated to :new_status',
+                'title'   => ':name Diperbarui',
+                'content' => ':name telah diperbarui menjadi :new_status',
             ],
             'sms' => [
-                'content' => 'Incident :name was updated',
+                'content' => 'Insiden :name telah diperbarui',
             ],
         ],
     ],
     'schedule' => [
         'new' => [
             'mail' => [
-                'subject' => 'New Schedule Created',
-                'content' => ':name was scheduled for :date',
-                'title'   => 'A new scheduled maintenance was created.',
-                'action'  => 'View',
+                'subject' => 'Jadwal Baru Sudah Dibuat',
+                'content' => ':name dijadwalkan pada :date',
+                'title'   => 'Pemeliharaan terjadwal baru telah dibuat.',
+                'action'  => 'Lihat',
             ],
             'slack' => [
-                'title'   => 'New Schedule Created!',
-                'content' => ':name was scheduled for :date',
+                'title'   => 'Jadwal Baru Sudah Dibuat!',
+                'content' => ':name dijadwalkan pada :date',
             ],
             'sms' => [
-                'content' => ':name was scheduled for :date',
+                'content' => ':name dijadwalkan pada :date',
             ],
         ],
     ],
     'subscriber' => [
         'verify' => [
             'mail' => [
-                'subject' => 'Verify Your Subscription',
-                'content' => 'Click to verify your subscription to :app_name status page.',
-                'title'   => 'Verify your subscription to :app_name status page.',
-                'action'  => 'Verify',
+                'subject' => 'Verifikasi Langganan Anda',
+                'content' => 'Klik untuk memverifikasi langganan Anda ke halaman status :app_name.',
+                'title'   => 'Verifikasi langganan Anda ke status halaman :app_name.',
+                'action'  => 'Verifikasi',
+            ],
+        ],
+        'manage' => [
+            'mail' => [
+                'subject' => 'Manage Your Subscription',
+                'content' => 'Click to manage your subscription to :app_name status page.',
+                'title'   => 'Click to manage your subscription to :app_name status page.',
+                'action'  => 'Manage subscription',
             ],
         ],
     ],
     'system' => [
         'test' => [
             'mail' => [
-                'subject' => 'Ping from Cachet!',
-                'content' => 'This is a test notification from Cachet!',
+                'subject' => 'Ping dari Cachet!',
+                'content' => 'Ini adalah test notifikasi dari Cachet!',
                 'title'   => '🔔',
             ],
         ],
@@ -98,10 +106,10 @@ return [
     'user' => [
         'invite' => [
             'mail' => [
-                'subject' => 'Your invitation is inside...',
-                'content' => 'You have been invited to join :app_name status page.',
-                'title'   => 'You\'re invited to join :app_name status page.',
-                'action'  => 'Accept',
+                'subject' => 'Undangan kamu ada di dalamnya...',
+                'content' => 'Anda diundang untuk bergabung dalam halaman status :app_name.',
+                'title'   => 'Anda diundang untuk bergabung halaman status :app_name.',
+                'action'  => 'Terima',
             ],
         ],
     ],

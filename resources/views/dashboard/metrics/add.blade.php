@@ -13,7 +13,7 @@
 <div class="content-wrapper">
     <div class="row">
         <div class="col-md-12">
-            @include('dashboard.partials.errors')
+            @include('partials.errors')
             <form class="form-vertical" name="MetricsForm" role="form" method="POST">
                 <input type="hidden" name="_token" value="{{ csrf_token() }}">
                 <fieldset>
@@ -49,7 +49,7 @@
                     </div>
                     <div class="form-group">
                         <label for="metric-default_value">{{ trans('forms.metrics.default-value') }}</label>
-                        <input type="number" class="form-control" name="metric[default_value]" id="metric-default_value" value="{{ Binput::old('metric.default_value') }}" placeholder="{{ trans('forms.metrics.default-value') }}">
+                        <input type="number" class="form-control" name="metric[default_value]" id="metric-default_value" value="{{ Binput::old('metric.default_value') }}" placeholder="{{ trans('forms.metrics.default-value') }}" required>
                     </div>
                     <div class="form-group">
                         <label for="metric-places">{{ trans('forms.metrics.places') }}</label>
@@ -57,11 +57,7 @@
                     </div>
                     <div class="form-group">
                         <label for="metric-places">{{ trans('forms.metrics.threshold') }}</label>
-                        <select name="metric[threshold]" class="form-control" required>
-                            @foreach ($acceptable_thresholds as $threshold)
-                            <option {{ (int) Binput::old('metric.threshold') === $threshold ? 'selected' : null }}>{{ $threshold }}</option>
-                            @endforeach
-                        </select>
+                        <input type="number" min="0" max="10" name="metric[threshold]" value="{{ Binput::old('metric.threshold') }}" class="form-control" required>
                     </div>
                     <div class="checkbox">
                         <label>

@@ -12,16 +12,30 @@
 return [
 
     'dashboard'          => 'Dashboard',
-    'writeable_settings' => 'Direktori pengaturan Cachet tidak dapat ditulisi. Pastikan bahwa <code>./bootstrap/cachet</code> dapat ditulisi oleh server web.',
+    'writeable_settings' => 'The Cachet settings directory is not writeable. Please make sure that <code>./bootstrap/cachet</code> is writeable by the web server.',
 
     // Incidents
     'incidents' => [
         'title'                    => 'Insiden &amp; Penjadwalan',
         'incidents'                => 'Insiden',
-        'logged'                   => '{0} Tidak ada insiden, bagus.|Anda mencatat satu insiden.|Anda sudah melaporkan <strong>:count</strong> insiden.',
+        'logged'                   => '{0}There are no incidents, good work.|[1]You have logged one incident.|[2,*]You have reported <strong>:count</strong> incidents.',
         'incident-create-template' => 'Buat Template',
         'incident-templates'       => 'Template Insiden',
-        'updates'                  => '{0} Nol Update|Satu Update|:count Update',
+        'updates'                  => [
+            'title'   => 'Update insiden untuk :incident',
+            'count'   => '{0}Zero Updates|[1]One Update|[2]Two Updates|[3,*]Several Updates',
+            'add'     => [
+                'title'   => 'Buat update insiden baru',
+                'success' => 'Update baru insiden anda berhasil dibuat.',
+                'failure' => 'Ada masalah dengan update insiden ini.',
+            ],
+            'edit' => [
+                'title'   => 'Edit update insiden',
+                'success' => 'Update insiden berhasil diupdate.',
+                'failure' => 'Ada masalah saat memperbarui update insiden',
+            ],
+        ],
+        'reported_by'              => 'Reported :timestamp by :user',
         'add'                      => [
             'title'   => 'Tambahkan Insiden',
             'success' => 'Insiden sudah ditambahkan.',
@@ -36,18 +50,13 @@ return [
             'success' => 'Insiden sudah dihapus dan tidak akan ditampilkan pada halaman status anda.',
             'failure' => 'Insiden tidak dapat dihapus, silakan coba lagi.',
         ],
-        'update' => [
-            'title'    => 'Buat update insiden baru',
-            'subtitle' => 'Menambahkan update ke <strong>:incident</strong>',
-            'success'  => 'Update added.',
-        ],
 
         // Incident templates
         'templates' => [
             'title' => 'Template Insiden',
             'add'   => [
                 'title'   => 'Buat template insiden',
-                'message' => 'Anda harus menambahkan template insiden.',
+                'message' => 'Create your first incident template.',
                 'success' => 'Template insiden baru telah dibuat.',
                 'failure' => 'Ada masalah dengan template insiden ini.',
             ],
@@ -65,8 +74,8 @@ return [
 
     // Incident Maintenance
     'schedule' => [
-        'schedule'     => 'Jadwal Pemeliharaan',
-        'logged'       => '{0} Tidak ada penjadwalan, mantap. | Anda mencatat satu jadwal. | Anda telah melaporkan <strong>:count</strong> jadwal.',
+        'schedule'     => 'Pemeliharaan',
+        'logged'       => '{0}There has been no Maintenance, good work.|[1]You have logged one schedule.|[2,*]You have reported <strong>:count</strong> schedules.',
         'scheduled_at' => 'Dijadwalkan pada :timestamp',
         'add'          => [
             'title'   => 'Tambahkan Jadwal Pemeliharaan',
@@ -147,13 +156,15 @@ return [
     ],
     // Subscribers
     'subscribers' => [
-        'subscribers'      => 'Berlangganan',
-        'description'      => 'Pelanggan akan menerima update email ketika insiden dibuat atau komponen diperbarui.',
-        'verified'         => 'Terverifikasi',
-        'not_verified'     => 'Belum Diverifikasi',
-        'subscriber'       => ':email, berlangganan :date',
-        'no_subscriptions' => 'Berlangganan semua update',
-        'add'              => [
+        'subscribers'          => 'Berlangganan',
+        'description'          => 'Pelanggan akan menerima update email ketika insiden dibuat atau komponen diperbarui.',
+        'description_disabled' => 'Untuk menggunakan fitur ini, Anda perlu mengizinkan orang untuk mendaftar notifikasi.',
+        'verified'             => 'Terverifikasi',
+        'not_verified'         => 'Belum Diverifikasi',
+        'subscriber'           => ':email, berlangganan :date',
+        'no_subscriptions'     => 'Berlangganan semua update',
+        'global'               => 'Berlangganan secara global',
+        'add'                  => [
             'title'   => 'Tambah Pelanggan Baru',
             'success' => 'Pelanggan sudah ditambahkan.',
             'failure' => 'Ada masalah saat menambah langganan, silakan coba lagi.',
@@ -216,11 +227,11 @@ return [
             'footer'        => 'Footer HTML Kustom',
         ],
         'mail' => [
-            'mail'  => 'Email',
-            'test'  => 'Uji',
+            'mail'  => 'Mail',
+            'test'  => 'Test',
             'email' => [
-                'subject' => 'Notifikasi uji dari Cachet',
-                'body'    => 'Ini adalah notifikasi uji dari Cachet.',
+                'subject' => 'Test notification from Cachet',
+                'body'    => 'This is a test notification from Cachet.',
             ],
         ],
         'security' => [

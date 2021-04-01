@@ -13,17 +13,22 @@
 <div class="content-wrapper">
     <div class="row">
         <div class="col-md-12">
-            @include('dashboard.partials.errors')
+            @if(!$notificationsEnabled)
+            <div class="alert alert-info" role="alert">
+                {{ trans('forms.incidents.notify_disabled') }}
+            </div>
+            @endif
+            @include('partials.errors')
             <report-incident inline-template>
                 <form class="form-vertical" name="IncidentForm" role="form" method="POST" autocomplete="off">
                     <input type="hidden" name="_token" value="{{ csrf_token() }}">
                     <fieldset>
-                        @if($incident_templates->count() > 0)
+                        @if($incidentTemplates->count() > 0)
                         <div class="form-group">
-                            <label for="incident-template">{{ trans('forms.incidents.templates.template') }}</label>
+                            <label for="template">{{ trans('forms.incidents.templates.template') }}</label>
                             <select class="form-control" name="template" v-model="template">
                                 <option selected></option>
-                                @foreach($incident_templates as $tpl)
+                                @foreach($incidentTemplates as $tpl)
                                 <option value="{{ $tpl->slug }}">{{ $tpl->name }}</option>
                                 @endforeach
                             </select>
@@ -70,26 +75,26 @@
                                 <option value="0" selected>{{ trans('forms.incidents.not_stickied') }}</option>
                             </select>
                         </div>
-                        @if(!$components_in_groups->isEmpty() || !$components_out_groups->isEmpty())
+                        @if(!$componentsInGroups->isEmpty() || !$componentsOutGroups->isEmpty())
                         <div class="form-group">
-                            <label>{{ trans('forms.incidents.component') }}</label>
+                            <label>{{ trans('forms.incidents.component') }}</label> <small class="text-muted">{{ trans('forms.optional') }}</small>
                             <select name="component_id" class="form-control" v-model="component.id">
                                 <option value="" selected></option>
-                                @foreach($components_in_groups as $group)
+                                @foreach($componentsInGroups as $group)
                                 <optgroup label="{{ $group->name }}">
                                     @foreach($group->components as $component)
-                                    <option value="{{ $component->id }}">{{ $component->name }}</option>
+                                    <option value="{{ $component->id }}">{!! $component->name !!}</option>
                                     @endforeach
                                 </optgroup>
                                 @endforeach
-                                @foreach($components_out_groups as $component)
-                                <option value="{{ $component->id }}">{{ $component->name }}</option>
+                                @foreach($componentsOutGroups as $component)
+                                <option value="{{ $component->id }}">{!! $component->name !!}</option>
                                 @endforeach
                             </select>
-                            <span class='help-block'>{{ trans('forms.optional') }}</span>
                         </div>
                         @endif
-                        <div class="form-group hidden" id="component-status" v-if="component.id">
+                        <div class="form-group" id="component-status" v-if="component.id">
+                            <label>{{ trans('forms.incidents.component_status') }}</label>
                             <div class="panel panel-default">
                                 <div class="panel-body">
                                     <div class="radio-items">
@@ -113,14 +118,24 @@
                         </div>
                         <div class="form-group">
                             <label>{{ trans('forms.incidents.occurred_at') }}</label> <small class="text-muted">{{ trans('forms.optional') }}</small>
-                            <input type="text" name="occurred_at" class="form-control" rel="datepicker-custom" data-date-format="YYYY-MM-DD HH:mm" placeholder="{{ trans('forms.optional') }}">
+                            <input type="text" name="occurred_at" class="form-control flatpickr-time" data-date-format="Y-m-d H:i" placeholder="{{ trans('forms.optional') }}">
                         </div>
+                        @if($notificationsEnabled)
                         <input type="hidden" name="notify" value="0">
                         <div class="checkbox">
                             <label>
                                 <input type="checkbox" name="notify" value="1" checked="{{ Binput::old('notify', 'checked') }}">
                                 {{ trans('forms.incidents.notify_subscribers') }}
                             </label>
+                        </div>
+                        @endif
+                        <div class="form-group">
+                            <label>{{ trans('forms.seo.title') }}</label> <small class="text-muted">{{ trans('forms.optional') }}</small>
+                            <input type="text" name="seo[title]" class="form-control" placeholder="{{ trans('forms.optional') }}">
+                        </div>
+                        <div class="form-group">
+                            <label>{{ trans('forms.seo.description') }}</label> <small class="text-muted">{{ trans('forms.optional') }}</small>
+                            <input type="text" name="seo[description]" class="form-control" placeholder="{{ trans('forms.optional') }}">
                         </div>
                     </fieldset>
 

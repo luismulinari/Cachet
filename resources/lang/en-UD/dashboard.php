@@ -16,12 +16,26 @@ return [
 
     // Incidents
     'incidents' => [
-        'title'                    => 'crwdns1324:0crwdne1324:0',
+        'title'                    => 'crwdns1400:0crwdne1400:0',
         'incidents'                => 'crwdns953:0crwdne953:0',
-        'logged'                   => 'crwdns954:0{0}crwdne954:0',
+        'logged'                   => 'crwdns1441:0{0}crwdnd1441:0[1]crwdne1441:0',
         'incident-create-template' => 'crwdns955:0crwdne955:0',
         'incident-templates'       => 'crwdns956:0crwdne956:0',
-        'updates'                  => 'crwdns957:0{0}crwdne957:0',
+        'updates'                  => [
+            'title'   => 'crwdns1402:0crwdne1402:0',
+            'count'   => 'crwdns1439:0{0}crwdnd1439:0[1]crwdnd1439:0[2]crwdne1439:0',
+            'add'     => [
+                'title'   => 'crwdns1404:0crwdne1404:0',
+                'success' => 'crwdns1405:0crwdne1405:0',
+                'failure' => 'crwdns1406:0crwdne1406:0',
+            ],
+            'edit' => [
+                'title'   => 'crwdns1407:0crwdne1407:0',
+                'success' => 'crwdns1408:0crwdne1408:0',
+                'failure' => 'crwdns1409:0crwdne1409:0',
+            ],
+        ],
+        'reported_by'              => 'crwdns1433:0crwdne1433:0',
         'add'                      => [
             'title'   => 'crwdns958:0crwdne958:0',
             'success' => 'crwdns959:0crwdne959:0',
@@ -36,18 +50,13 @@ return [
             'success' => 'crwdns964:0crwdne964:0',
             'failure' => 'crwdns965:0crwdne965:0',
         ],
-        'update' => [
-            'title'    => 'crwdns966:0crwdne966:0',
-            'subtitle' => 'crwdns967:0crwdne967:0',
-            'success'  => 'crwdns1353:0crwdne1353:0',
-        ],
 
         // Incident templates
         'templates' => [
             'title' => 'crwdns968:0crwdne968:0',
             'add'   => [
                 'title'   => 'crwdns969:0crwdne969:0',
-                'message' => 'crwdns970:0crwdne970:0',
+                'message' => 'crwdns1443:0crwdne1443:0',
                 'success' => 'crwdns971:0crwdne971:0',
                 'failure' => 'crwdns972:0crwdne972:0',
             ],
@@ -65,22 +74,22 @@ return [
 
     // Incident Maintenance
     'schedule' => [
-        'schedule'     => 'crwdns978:0crwdne978:0',
-        'logged'       => 'crwdns979:0{0}crwdne979:0',
+        'schedule'     => 'crwdns1410:0crwdne1410:0',
+        'logged'       => 'crwdns1440:0{0}crwdnd1440:0[1]crwdne1440:0',
         'scheduled_at' => 'crwdns980:0crwdne980:0',
         'add'          => [
-            'title'   => 'crwdns981:0crwdne981:0',
-            'success' => 'crwdns982:0crwdne982:0',
-            'failure' => 'crwdns983:0crwdne983:0',
+            'title'   => 'crwdns1412:0crwdne1412:0',
+            'success' => 'crwdns1413:0crwdne1413:0',
+            'failure' => 'crwdns1414:0crwdne1414:0',
         ],
         'edit' => [
-            'title'   => 'crwdns984:0crwdne984:0',
-            'success' => 'crwdns985:0crwdne985:0',
-            'failure' => 'crwdns986:0crwdne986:0',
+            'title'   => 'crwdns1415:0crwdne1415:0',
+            'success' => 'crwdns1416:0crwdne1416:0',
+            'failure' => 'crwdns1417:0crwdne1417:0',
         ],
         'delete' => [
-            'success' => 'crwdns987:0crwdne987:0',
-            'failure' => 'crwdns988:0crwdne988:0',
+            'success' => 'crwdns1418:0crwdne1418:0',
+            'failure' => 'crwdns1419:0crwdne1419:0',
         ],
     ],
 
@@ -147,13 +156,15 @@ return [
     ],
     // Subscribers
     'subscribers' => [
-        'subscribers'      => 'crwdns1021:0crwdne1021:0',
-        'description'      => 'crwdns1022:0crwdne1022:0',
-        'verified'         => 'crwdns1023:0crwdne1023:0',
-        'not_verified'     => 'crwdns1024:0crwdne1024:0',
-        'subscriber'       => 'crwdns1025:0crwdne1025:0',
-        'no_subscriptions' => 'crwdns1026:0crwdne1026:0',
-        'add'              => [
+        'subscribers'          => 'crwdns1021:0crwdne1021:0',
+        'description'          => 'crwdns1022:0crwdne1022:0',
+        'description_disabled' => 'crwdns1420:0crwdne1420:0',
+        'verified'             => 'crwdns1023:0crwdne1023:0',
+        'not_verified'         => 'crwdns1024:0crwdne1024:0',
+        'subscriber'           => 'crwdns1025:0crwdne1025:0',
+        'no_subscriptions'     => 'crwdns1026:0crwdne1026:0',
+        'global'               => 'crwdns1421:0crwdne1421:0',
+        'add'                  => [
             'title'   => 'crwdns1027:0crwdne1027:0',
             'success' => 'crwdns1028:0crwdne1028:0',
             'failure' => 'crwdns1029:0crwdne1029:0',

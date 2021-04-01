@@ -11,94 +11,103 @@
 
 return [
 
-    'dashboard'          => 'Kontrol paneli',
-    'writeable_settings' => 'Cachet ayarlar dizini yazılabilir değil. Lütfen <code>./bootstrap/cachet</code> sunucu tarafından yazılabilir olduğundan emin olun.',
+    'dashboard'          => 'Dashboard',
+    'writeable_settings' => 'The Cachet settings directory is not writeable. Please make sure that <code>./bootstrap/cachet</code> is writeable by the web server.',
 
     // Incidents
     'incidents' => [
-        'title'                    => 'Olaylar &amp; Zamanlama',
-        'incidents'                => 'Olaylar',
-        'logged'                   => '{0} Hiç olay yok, tebrikler. |Bir olay rapor ettiniz.|<strong>:count</strong> olay rapor ettiniz.',
-        'incident-create-template' => 'Şablon Oluştur',
-        'incident-templates'       => 'Olay Şablonları',
-        'updates'                  => '{0} Sıfır Güncelleme | Bir Güncelleme |:count Güncelleme',
+        'title'                    => 'Incidents & Maintenance',
+        'incidents'                => 'Incidents',
+        'logged'                   => '{0}There are no incidents, good work.|[1]You have logged one incident.|[2,*]You have reported <strong>:count</strong> incidents.',
+        'incident-create-template' => 'Create Template',
+        'incident-templates'       => 'Incident Templates',
+        'updates'                  => [
+            'title'   => 'Incident updates for :incident',
+            'count'   => '{0}Zero Updates|[1]One Update|[2]Two Updates|[3,*]Several Updates',
+            'add'     => [
+                'title'   => 'Create new incident update',
+                'success' => 'Your new incident update has been created.',
+                'failure' => 'Something went wrong with the incident update.',
+            ],
+            'edit' => [
+                'title'   => 'Edit incident update',
+                'success' => 'The incident update has been updated.',
+                'failure' => 'Something went wrong updating the incident update',
+            ],
+        ],
+        'reported_by'              => 'Reported :timestamp by :user',
         'add'                      => [
-            'title'   => 'Olay Ekle',
-            'success' => 'Olay eklendi.',
-            'failure' => 'Olay eklenirken bir hata oluştu, lütfen tekrar deneyin.',
+            'title'   => 'Report an incident',
+            'success' => 'Incident added.',
+            'failure' => 'There was an error adding the incident, please try again.',
         ],
         'edit' => [
-            'title'   => 'Olay Düzenle',
-            'success' => 'Olay güncellendi.',
-            'failure' => 'Olay düzenlenirken bir hata oluştu, lütfen tekrar deneyin.',
+            'title'   => 'Edit an incident',
+            'success' => 'Incident updated.',
+            'failure' => 'There was an error editing the incident, please try again.',
         ],
         'delete' => [
-            'success' => 'Olay silindi ve durum sayfanızda bir daha gösterilmeyecek.',
-            'failure' => 'Olay silinemedi, lütfen tekrar deneyin.',
-        ],
-        'update' => [
-            'title'    => 'Yeni olay güncellemesi oluştur',
-            'subtitle' => '<strong>:incident</strong> için güncelleme ekkleyin',
-            'success'  => 'Update added.',
+            'success' => 'The incident has been deleted and will not show on your status page.',
+            'failure' => 'The incident could not be deleted, please try again.',
         ],
 
         // Incident templates
         'templates' => [
-            'title' => 'Olay Şablonları',
+            'title' => 'Incident Templates',
             'add'   => [
-                'title'   => 'Olay Şablonu Oluştur',
-                'message' => 'Bir olay şablonu eklemelisiniz.',
-                'success' => 'Yeni olay şablonunuz oluşturuldu.',
-                'failure' => 'Olay şablonu ile ilgili bir şeyler ters gitti.',
+                'title'   => 'Create an incident template',
+                'message' => 'Create your first incident template.',
+                'success' => 'Your new incident template has been created.',
+                'failure' => 'Something went wrong with the incident template.',
             ],
             'edit' => [
-                'title'   => 'Şablonu Düzenle',
-                'success' => 'Olay şablonu güncellendi.',
-                'failure' => 'Olay şablonunu güncellerken bir şeyler ters gitti',
+                'title'   => 'Edit Template',
+                'success' => 'The incident template has been updated.',
+                'failure' => 'Something went wrong updating the incident template',
             ],
             'delete' => [
-                'success' => 'Olay şablonu silindi.',
-                'failure' => 'Olay şablonu silinemedi, lütfen tekrar deneyin.',
+                'success' => 'The incident template has been deleted.',
+                'failure' => 'The incident template could not be deleted, please try again.',
             ],
         ],
     ],
 
     // Incident Maintenance
     'schedule' => [
-        'schedule'     => 'Zamanlanmış bakım',
-        'logged'       => '{0} Hiçbir olay yok, tebrikler. |Bir olayı raprladınız. | <strong>:count</strong> olayı raporladınız.',
-        'scheduled_at' => ':timestamp zamanı için kaydedildi',
+        'schedule'     => 'Maintenance',
+        'logged'       => '{0}There has been no Maintenance, good work.|[1]You have logged one schedule.|[2,*]You have reported <strong>:count</strong> schedules.',
+        'scheduled_at' => 'Scheduled at :timestamp',
         'add'          => [
-            'title'   => 'Zamanlanmış Bakım Ekle',
-            'success' => 'Zamanlama eklendi.',
-            'failure' => 'Zamanlama eklerken bir şeyler yanlış gitti, lütfen yeniden deneyin.',
+            'title'   => 'Add Maintenance',
+            'success' => 'Maintenance added.',
+            'failure' => 'Something went wrong adding the Maintenance, please try again.',
         ],
         'edit' => [
-            'title'   => 'Zamanlanmış Bakımı Düzenle',
-            'success' => 'Zamanlama güncellendi!',
-            'failure' => 'Zamanlama düzeltilirken bir şeyler ters gitti, lütfen tekrar deneyin.',
+            'title'   => 'Edit Maintenance',
+            'success' => 'Maintenance has been updated!',
+            'failure' => 'Something went wrong editing the Maintenance, please try again.',
         ],
         'delete' => [
-            'success' => 'Zamanlanmış bakım silindi ve durum sayfanızda bir daha gösterilmeyecek.',
-            'failure' => 'Zamanlanmış bakım silinemez, lütfen tekrar deneyin.',
+            'success' => 'The Maintenance has been deleted and will not show on your status page.',
+            'failure' => 'The Maintenance could not be deleted, please try again.',
         ],
     ],
 
     // Components
     'components' => [
-        'components'         => 'Bileşenler',
-        'component_statuses' => 'Bileşen Durumları',
-        'listed_group'       => ':name altında toplandı',
+        'components'         => 'Components',
+        'component_statuses' => 'Component Statuses',
+        'listed_group'       => 'Grouped under :name',
         'add'                => [
-            'title'   => 'Bileşen ekle',
-            'message' => 'Bir bileşen eklemelisiniz.',
-            'success' => 'Bileşen oluşturuldu.',
-            'failure' => 'Bileşenlerle ilgili bir şeyler yanlış gitti, lütfen daha sonra tekrar deneyin.',
+            'title'   => 'Add a component',
+            'message' => 'You should add a component.',
+            'success' => 'Component created.',
+            'failure' => 'Something went wrong with the component group, please try again.',
         ],
         'edit' => [
-            'title'   => 'Bileşen düzenle',
+            'title'   => 'Edit a component',
             'success' => 'Component updated.',
-            'failure' => 'Bileşenlerle ilgili bir şeyler yanlış gitti, lütfen daha sonra tekrar deneyin.',
+            'failure' => 'Something went wrong with the component group, please try again.',
         ],
         'delete' => [
             'success' => 'The component has been deleted!',
@@ -112,26 +121,26 @@ return [
             'add'           => [
                 'title'   => 'Add a component group',
                 'success' => 'Component group added.',
-                'failure' => 'Bileşenlerle ilgili bir şeyler yanlış gitti, lütfen daha sonra tekrar deneyin.',
+                'failure' => 'Something went wrong with the component group, please try again.',
             ],
             'edit' => [
                 'title'   => 'Edit a component group',
                 'success' => 'Component group updated.',
-                'failure' => 'Bileşenlerle ilgili bir şeyler yanlış gitti, lütfen daha sonra tekrar deneyin.',
+                'failure' => 'Something went wrong with the component group, please try again.',
             ],
             'delete' => [
-                'success' => 'Bileşen grubu silindi!',
-                'failure' => 'Bileşen grubu silinemedi, lütfen tekrar deneyin.',
+                'success' => 'Component group has been deleted!',
+                'failure' => 'The component group could not be deleted, please try again.',
             ],
         ],
     ],
 
     // Metrics
     'metrics' => [
-        'metrics' => 'Metrik',
+        'metrics' => 'Metrics',
         'add'     => [
-            'title'   => 'Bir ölçü oluştur',
-            'message' => 'Bir ölçü eklemelisiniz.',
+            'title'   => 'Create a metric',
+            'message' => 'You should add a metric.',
             'success' => 'Metric created.',
             'failure' => 'Something went wrong with the metric, please try again.',
         ],
@@ -147,13 +156,15 @@ return [
     ],
     // Subscribers
     'subscribers' => [
-        'subscribers'      => 'Subscribers',
-        'description'      => 'Subscribers will receive email updates when incidents are created or components are updated.',
-        'verified'         => 'Verified',
-        'not_verified'     => 'Not verified',
-        'subscriber'       => ':email, subscribed :date',
-        'no_subscriptions' => 'Subscribed to all updates',
-        'add'              => [
+        'subscribers'          => 'Subscribers',
+        'description'          => 'Subscribers will receive email updates when incidents are created or components are updated.',
+        'description_disabled' => 'To use this feature, you need allow people to signup for notifications.',
+        'verified'             => 'Verified',
+        'not_verified'         => 'Not verified',
+        'subscriber'           => ':email, subscribed :date',
+        'no_subscriptions'     => 'Subscribed to all updates',
+        'global'               => 'Globally subscribed',
+        'add'                  => [
             'title'   => 'Add a new subscriber',
             'success' => 'Subscriber has been added!',
             'failure' => 'Something went wrong adding the subscriber, please try again.',

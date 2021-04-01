@@ -23,6 +23,8 @@ return [
         'group' => [
             'other' => '其他组件',
         ],
+        'select_all'   => '全选',
+        'deselect_all' => '反选所有',
     ],
 
     // Incidents
@@ -32,7 +34,8 @@ return [
         'stickied'     => '已关注的故障',
         'scheduled'    => '计划维护',
         'scheduled_at' => '，计划于 :timestamp',
-        'posted'       => '发布于 :timestamp',
+        'posted'       => '在 :timestamp 由 :username 发布',
+        'posted_at'    => '发布于 :timestamp',
         'status'       => [
             1 => '确认中',
             2 => '修复中',
@@ -52,9 +55,9 @@ return [
 
     // Service Status
     'service' => [
-        'good'  => '[0,1] 系统工作正常|[2,Inf] 所有系统工作正常',
-        'bad'   => '[0,1] 一个系统出现了问题|[2,Inf] 一些系统出现了问题',
-        'major' => '[0,1] 一个系统出现重大故障|[2,Inf] 一些系统出现重大故障',
+        'good'  => '[0,1] 系统工作正常|[2,*] 所有系统工作正常',
+        'bad'   => '[0,1] 系统出现了问题|[2,*] 一些系统出现了问题',
+        'major' => '[0,1] 系统出现重大故障|[2,*] 一些系统出现重大故障',
     ],
 
     'api' => [
@@ -74,22 +77,29 @@ return [
 
     // Subscriber
     'subscriber' => [
-        'subscribe'   => '订阅最新的更新。',
-        'unsubscribe' => '使用这个链接取消订阅： :link',
-        'button'      => '订阅',
-        'manage'      => [
-            'no_subscriptions' => '您当前已订阅所有更新。',
-            'my_subscriptions' => '您当前已订阅下列更新',
+        'subscribe'           => '关注状态更改和更新',
+        'unsubscribe'         => '取消订阅',
+        'button'              => '订阅',
+        'manage_subscription' => '管理订阅',
+        'manage'              => [
+            'notifications'       => '通知',
+            'notifications_for'   => '管理通知给',
+            'no_subscriptions'    => '您当前已订阅所有更新。',
+            'update_subscription' => '更新订阅',
+            'my_subscriptions'    => '您当前已订阅下列更新',
+            'manage_at_link'      => '在 :link 管理你的订阅',
         ],
         'email' => [
-            'subscribe'          => '订阅电子邮件更新。',
-            'subscribed'         => '您已经订阅电子邮件通知，请检查您的电子邮件进行确认。',
-            'verified'           => '您的电子邮件订阅已确认。谢谢！',
-            'manage'             => '管理您的订阅',
-            'unsubscribe'        => '取消电子邮件订阅。',
-            'unsubscribed'       => '您的电子邮件订阅已被取消。',
-            'failure'            => '邮件订阅失败。',
-            'already-subscribed' => '无法订阅，因为这个邮箱地址 ( :email ) 已经在订阅列表中了。',
+            'manage_subscription' => '我们已经给您发送了一封电子邮件，请点击链接来管理您的订阅',
+            'subscribe'           => '订阅电子邮件更新。',
+            'subscribed'          => '您已经订阅电子邮件通知，请检查您的电子邮件进行确认。',
+            'updated-subscribe'   => '您已成功更新您的订阅。',
+            'verified'            => '您的电子邮件订阅已确认。谢谢！',
+            'manage'              => '管理您的订阅',
+            'unsubscribe'         => '取消电子邮件订阅。',
+            'unsubscribed'        => '您的电子邮件订阅已被取消。',
+            'failure'             => '邮件订阅失败。',
+            'already-subscribed'  => '无法订阅，因为这个邮箱地址 ( :email ) 已经在订阅列表中了。',
         ],
     ],
 
@@ -116,12 +126,21 @@ return [
         ],
     ],
 
+    // Meta descriptions
+    'meta' => [
+        'description' => [
+            'incident'  => '有关于发生在 :date 的 :name 事件的细节与更新',
+            'schedule'  => '有关于计划维护时段 :name ，开始于 :startDate，的细节说明',
+            'subscribe' => '订阅 :app 以接收故障更新和定期维护信息',
+            'overview'  => '始终保持对 :app 服务状态的关注。',
+        ],
+    ],
+
     // Other
     'home'            => '主屏幕',
-    'description'     => '始终保持对 :app 服务状态的关注。',
     'powered_by'      => '由 <a href="https://cachethq.io" class="links">Cachet</a> 驱动。',
     'timezone'        => '时间将以 :timezone 时区显示。',
-    'about_this_site' => '关于我们',
+    'about_this_site' => '关于本站',
     'rss-feed'        => 'RSS',
     'atom-feed'       => 'Atom',
     'feed'            => '状态源',
